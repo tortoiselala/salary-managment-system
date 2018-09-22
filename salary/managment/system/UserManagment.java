@@ -6,6 +6,7 @@ package salary.managment.system;
 import java.sql.*;
 
 import salary.managment.system.DatabaseFiled;
+import salary.managment.system.Exception.LenException;
 
 /**
  * @author Tortoise
@@ -43,14 +44,86 @@ public class UserManagment {
 	 */
 
 	public UserManagment(String databaseURL, String databasePort, String databaseName, String adminName,
-			String adminPass) throws ClassNotFoundException, SQLException {
+			String adminPass) {
 		setAdminName(adminName);
 		setAdminPass(adminPass);
+
+	}
+
+	public void getConnection() throws ClassNotFoundException, SQLException {
 		// 注册JDBC驱动
 		Class.forName(DatabaseFiled.JDBC_DRIVER);
 		// 打开数据库
 		connection = DriverManager.getConnection(DatabaseFiled.getDatabaseUserInfoURL(),
 				DatabaseFiled.DB_DATABASE_ROOT_NAME, DatabaseFiled.DB_DATABASE_ROOT_PASS);
+		statement = connection.createStatement();
+	}
+
+	public boolean tryCreateAdminUser(String userName, String userPass)
+			throws SQLException, LenException, ClassNotFoundException {
+		if (isAdminUser(false)) {
+			return false;
+		}
+		if (userName.length() > 12 || userName.length() > 18) {
+			throw new LenException("to long length of name or password!");
+		}
+		// COMMAND:
+		// INSERT INTO user_admin
+		// (user_admin_name, user_admin_pass, user_admin_create_time)
+		// VALUES
+		// ();
+		String sql = "INSERT INTO " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN + " ("
+				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_NAME + ","
+				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_PASS + ","
+				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_CREATE_TIME + ") VALUES (" + userName
+				+ "," + userPass + "," + "NOW())";
+		getConnection();
+		statement.executeUpdate(sql);
+		connection.close();
+		return true;
+	}
+
+	public boolean isAdminUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {
+		getConnection();
+		String sql = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN;
+		ResultSet resultSet = statement.executeQuery(sql);
+		while (resultSet.next()) {
+			if (!adminName.equals(
+					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_NAME))) {
+				connection.close();
+				return false;
+			}
+			if (checkPassFlag && !adminPass.equals(
+					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_PASS))) {
+				connection.close();
+				return false;
+			}
+		}
+		connection.close();
+		return true;
+	}
+
+	public boolean isGenerUser(boolean checkPassFlag) throws SQLException {
+		String sqlCheckString = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER;
+		ResultSet resultSet = statement.executeQuery(sqlCheckString);
+		while (resultSet.next()) {
+			if (!adminName.equals(
+					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_NAME))) {
+				return false;
+			}
+			if (checkPassFlag && !adminPass.equals(
+					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_PASS))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean isUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {
+		if (!isAdminUser(checkPassFlag) && !isGenerUser(checkPassFlag)) {
+			return false;
+		}
+		return true;
 	}
 
 	/**

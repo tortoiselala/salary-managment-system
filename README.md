@@ -1,1 +1,0 @@
-# salary-managment-system
