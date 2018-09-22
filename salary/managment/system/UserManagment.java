@@ -4,7 +4,6 @@
 package salary.managment.system;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 import salary.managment.system.DatabaseFiled;
 import salary.managment.system.Exception.LenException;
