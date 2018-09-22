@@ -88,6 +88,6 @@ public final class DatabaseFiled {
 	 * @return 数据库链接
 	 */
 	public static String getDatabaseUserInfoURL() {
-		return DB_URL_HEAD + "://" + DB_URL_URL + "/" + DB_URL_PORT + "/" + DB_DATABASE_USER_INFO;
+		return DB_URL_HEAD + "://" + DB_URL_URL + ":" + DB_URL_PORT + "/" + DB_DATABASE_USER_INFO;
 	}
 }

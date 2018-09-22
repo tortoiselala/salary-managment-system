@@ -135,5 +135,6 @@ public class DecreaseSalary extends BaseSalary {
 		}
 		this.otherFee = otherFee;
 	}
+	
 
 }

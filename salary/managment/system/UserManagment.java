@@ -4,6 +4,7 @@
 package salary.managment.system;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import salary.managment.system.DatabaseFiled;
 import salary.managment.system.Exception.LenException;
@@ -33,6 +34,48 @@ import salary.managment.system.Exception.LenException;
  *         </p>
  */
 public class UserManagment {
+	public static void main(String[] args) {
+		UserManagment test_1 = new UserManagment("g_test_2", "g_test_2");
+		try {
+			System.out.println("-----------test case 1, usr_name :g_test_2, usr_pass :g_test_2----------");
+			System.out.println("test:getAllAdmin");
+			String[][] allAdmin = test_1.getAllAdminUser();
+			for (String[] e : allAdmin) {
+				System.out.print(e[0] + "  ");
+				System.out.print(e[1] + "  ");
+				System.out.println(e[2]);
+			}
+			System.out.println();
+			System.out.println("test:getAllGener");
+			String[][] allGener = test_1.getAllGenerUser();
+			for (String[] e : allGener) {
+				System.out.print(e[0] + "  ");
+				System.out.print(e[1] + "  ");
+				System.out.println(e[2]);
+			}
+			System.out.println();
+			System.out.println("test:isAdminUser pass: false");
+			if (test_1.isAdminUser(false)) {
+				System.out.println("isAdminUser:  true");
+			} else {
+				System.out.println("isAdminUser:  false");
+			}
+			System.out.println();
+			System.out.println("test:isAdminUser pass:true");
+			if (test_1.isAdminUser(true)) {
+				System.out.println("isAdminUser:  true");
+			} else {
+				System.out.println("isAdminUser:  false");
+			}
+			System.out.println("-----------end :test case 1------------------------");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	private String adminName;
 	private String adminPass;
@@ -43,14 +86,13 @@ public class UserManagment {
 	 * 
 	 */
 
-	public UserManagment(String databaseURL, String databasePort, String databaseName, String adminName,
-			String adminPass) {
+	public UserManagment(String adminName, String adminPass) {
 		setAdminName(adminName);
 		setAdminPass(adminPass);
 
 	}
 
-	public void getConnection() throws ClassNotFoundException, SQLException {
+	private void getConnection() throws ClassNotFoundException, SQLException {
 		// 注册JDBC驱动
 		Class.forName(DatabaseFiled.JDBC_DRIVER);
 		// 打开数据库
@@ -59,12 +101,11 @@ public class UserManagment {
 		statement = connection.createStatement();
 	}
 
-	public boolean tryCreateAdminUser(String userName, String userPass)
-			throws SQLException, LenException, ClassNotFoundException {
+	public boolean tryCreateAdminUser() throws SQLException, LenException, ClassNotFoundException {
 		if (isAdminUser(false)) {
 			return false;
 		}
-		if (userName.length() > 12 || userName.length() > 18) {
+		if (adminName.length() > 12 || adminName.length() > 18) {
 			throw new LenException("to long length of name or password!");
 		}
 		// COMMAND:
@@ -75,9 +116,93 @@ public class UserManagment {
 		String sql = "INSERT INTO " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN + " ("
 				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_NAME + ","
 				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_PASS + ","
-				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_CREATE_TIME + ") VALUES (" + userName
-				+ "," + userPass + "," + "NOW())";
+				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_CREATE_TIME + ") VALUES ( \""
+				+ adminName + "\", \"" + adminPass + "\"," + "NOW())";
+		System.out.println(sql);
 		getConnection();
+		statement.executeUpdate(sql);
+		connection.close();
+		return true;
+	}
+
+	public boolean tryCreateGenerUser() throws LenException, ClassNotFoundException, SQLException {
+		if (isAdminUser(false)) {
+			return false;
+		}
+		if (adminName.length() > 12 || adminName.length() > 18) {
+			throw new LenException("to long length of name or password!");
+		}
+		// COMMAND:
+		// INSERT INTO user_gener
+		// (user_gener_name, user_gener_pass, user_gener_create_time)
+		// VALUES
+		// ();
+		String sql = "INSERT INTO " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER + " ("
+				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_NAME + ","
+				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_PASS + ","
+				+ DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_CREATE_TIME + ") VALUES ( \""
+				+ adminName + "\", \"" + adminPass + "\"," + "NOW())";
+		getConnection();
+		statement.executeUpdate(sql);
+		connection.close();
+		return true;
+	}
+
+	public boolean tryDeleteAdminUser() throws ClassNotFoundException, SQLException {
+		getConnection();
+		String sql = "DELETE FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN
+				+ " WHERE user_admin_name = \"" + adminName + "\"";
+		statement.executeUpdate(sql);
+		connection.close();
+		return true;
+	}
+
+	public String[][] getAllAdminUser() throws SQLException, ClassNotFoundException {
+
+		getConnection();
+		String sql = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN;
+		ResultSet resultSet = statement.executeQuery(sql);
+		resultSet.last();
+		int row = resultSet.getRow();
+		resultSet.beforeFirst();
+		String[][] result = new String[row][3];
+		int loop = 0;
+		while (resultSet.next()) {
+			result[loop][0] = Integer.toString(resultSet.getRow());
+			result[loop][1] = resultSet
+					.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_NAME);
+			result[loop][2] = resultSet
+					.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_CREATE_TIME);
+			loop++;
+		}
+		statement.close();
+		return result;
+	}
+
+	public String[][] getAllGenerUser() throws SQLException, ClassNotFoundException {
+		getConnection();
+		String sql = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER;
+		ResultSet resultSet = statement.executeQuery(sql);
+		resultSet.last();
+		int row = resultSet.getRow();
+		resultSet.beforeFirst();
+		String[][] result = new String[row][3];
+		int loop = 0;
+		while (resultSet.next()) {
+			result[loop][0] = Integer.toString(resultSet.getRow());
+			result[loop][1] = resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_NAME);
+			result[loop][2] = resultSet
+					.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_CREATE_TIME);
+			loop++;
+		}
+		statement.close();
+		return result;
+	}
+
+	public boolean tryDeleteGenerUser() throws ClassNotFoundException, SQLException {
+		getConnection();
+		String sql = "DELETE FORM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER + " WHERE user_admin_name = "
+				+ adminName;
 		statement.executeUpdate(sql);
 		connection.close();
 		return true;
@@ -103,7 +228,8 @@ public class UserManagment {
 		return true;
 	}
 
-	public boolean isGenerUser(boolean checkPassFlag) throws SQLException {
+	public boolean isGenerUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {
+		getConnection();
 		String sqlCheckString = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER;
 		ResultSet resultSet = statement.executeQuery(sqlCheckString);
 		while (resultSet.next()) {
