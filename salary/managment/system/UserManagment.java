@@ -3,6 +3,8 @@
  */
 package salary.managment.system;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 
 
@@ -76,6 +78,12 @@ public class UserManagment {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 
@@ -94,7 +102,7 @@ public class UserManagment {
 
 	}
 
-	private void getConnection() throws ClassNotFoundException, SQLException {
+	private void getConnection() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		// 注册JDBC驱动
 		Class.forName(DatabaseFiled.JDBC_DRIVER);
 		// 打开数据库
@@ -103,7 +111,7 @@ public class UserManagment {
 		statement = connection.createStatement();
 	}
 
-	public boolean tryCreateAdminUser() throws SQLException, LenException, ClassNotFoundException {
+	public boolean tryCreateAdminUser() throws SQLException, LenException, ClassNotFoundException, FileNotFoundException, IOException {
 		if (isAdminUser(false)) {
 			return false;
 		}
@@ -129,7 +137,7 @@ public class UserManagment {
 		return true;
 	}
 
-	public boolean tryCreateGenerUser() throws LenException, ClassNotFoundException, SQLException {
+	public boolean tryCreateGenerUser() throws LenException, ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		if (isAdminUser(false)) {
 			return false;
 		}
@@ -154,7 +162,7 @@ public class UserManagment {
 		return true;
 	}
 
-	public boolean tryDeleteAdminUser() throws ClassNotFoundException, SQLException {
+	public boolean tryDeleteAdminUser() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "DELETE FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN
 				+ " WHERE user_admin_name = \"" + adminName + "\"";
@@ -163,7 +171,7 @@ public class UserManagment {
 		return true;
 	}
 
-	public String[][] getAllAdminUser() throws SQLException, ClassNotFoundException {
+	public String[][] getAllAdminUser() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
 
 		getConnection();
 		String sql = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN;
@@ -185,7 +193,7 @@ public class UserManagment {
 		return result;
 	}
 
-	public String[][] getAllGenerUser() throws SQLException, ClassNotFoundException {
+	public String[][] getAllGenerUser() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER;
 		ResultSet resultSet = statement.executeQuery(sql);
@@ -205,7 +213,7 @@ public class UserManagment {
 		return result;
 	}
 
-	public boolean tryDeleteGenerUser() throws ClassNotFoundException, SQLException {
+	public boolean tryDeleteGenerUser() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "DELETE FORM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER + " WHERE user_admin_name = "
 				+ adminName;
@@ -214,7 +222,7 @@ public class UserManagment {
 		return true;
 	}
 
-	public boolean isAdminUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {
+	public boolean isAdminUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN;
 		ResultSet resultSet = statement.executeQuery(sql);
@@ -239,7 +247,7 @@ public class UserManagment {
 		return false;
 	}
 
-	public boolean isGenerUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {
+	public boolean isGenerUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
 		getConnection();
 		String sqlCheckString = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER;
 		ResultSet resultSet = statement.executeQuery(sqlCheckString);
@@ -263,7 +271,7 @@ public class UserManagment {
 		return false;
 	}
 
-	public boolean isUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {
+	public boolean isUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
 		if (!isAdminUser(checkPassFlag) && !isGenerUser(checkPassFlag)) {
 			return false;
 		}

@@ -3,6 +3,9 @@
  */
 package salary.managment.system;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * @author Tortoise
  *
@@ -17,11 +20,16 @@ public final class DatabaseFiled {
 	 */
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	public static final String DB_URL_HEAD = "jdbc:mysql";
-	public static final String DB_URL_URL = "localhost";
 	/**
 	 * {@code DB_URL_PORT}数据库连接端口
 	 */
-	public static final String DB_URL_PORT = "3306";
+
+	public static String get_DB_URL_PORT() throws FileNotFoundException, IOException {
+		return LoadProperties.getPort();
+	}
+	public static String get_DB_URL_IP() throws FileNotFoundException, IOException {
+		return LoadProperties.getIP();
+	}
 
 	/**
 	 * {@code DB_DATABASE_USER_INFO}存储高级管理员和普通管理员信息的数据库名
@@ -108,13 +116,14 @@ public final class DatabaseFiled {
 	 * 获取数据库链接
 	 * 
 	 * @return 数据库链接
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public static String getDatabaseUserInfoURL() {
-		return DB_URL_HEAD + "://" + DB_URL_URL + ":" + DB_URL_PORT + "/" + DB_DATABASE_USER_INFO;
+	public static String getDatabaseUserInfoURL() throws FileNotFoundException, IOException {
+		return DB_URL_HEAD + "://" + get_DB_URL_IP() + ":" + get_DB_URL_PORT() + "/" + DB_DATABASE_USER_INFO;
 	}
 
-	public static String getDatabaseBaseInformationURL() {
-		return DB_URL_HEAD + "://" + DB_URL_URL + ":" + DB_URL_PORT + "/"
-				+ DB_DATABASE_BASE_INFORMATION;
+	public static String getDatabaseBaseInformationURL() throws FileNotFoundException, IOException {
+		return DB_URL_HEAD + "://" + get_DB_URL_IP() + ":" + get_DB_URL_PORT() + "/" + DB_DATABASE_BASE_INFORMATION;
 	}
 }

@@ -3,6 +3,8 @@
  */
 package salary.managment.system;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 		super(id, name, sex, age, baseSalary, category);
 	}
 
-	private void getConnection() throws ClassNotFoundException, SQLException {
+	private void getConnection() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		// 注册JDBC驱动
 		Class.forName(DatabaseFiled.JDBC_DRIVER);
 		// 打开数据库
@@ -60,7 +62,7 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 		statement = connection.createStatement();
 	}
 
-	public boolean isEmployeeInformationExits() throws ClassNotFoundException, SQLException {
+	public boolean isEmployeeInformationExits() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "SELECT * FROM "
 				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM;
@@ -75,7 +77,7 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 		return false;
 	}
 
-	public boolean deleteEmployeeInformation() throws ClassNotFoundException, SQLException {
+	public boolean deleteEmployeeInformation() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "DELETE FROM " + DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM
 				+ " WHERE " + DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_ID
@@ -85,7 +87,7 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 		return true;
 	}
 
-	public void addOrUpdateEmployee() throws ClassNotFoundException, SQLException {
+	public void addOrUpdateEmployee() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 
 		String sql;
 
