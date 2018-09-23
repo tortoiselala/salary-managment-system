@@ -20,6 +20,7 @@ public final class DatabaseFiled {
 	 */
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	public static final String DB_URL_HEAD = "jdbc:mysql";
+
 	/**
 	 * {@code DB_URL_PORT}数据库连接端口
 	 */
@@ -27,6 +28,7 @@ public final class DatabaseFiled {
 	public static String get_DB_URL_PORT() throws FileNotFoundException, IOException {
 		return LoadProperties.getPort();
 	}
+
 	public static String get_DB_URL_IP() throws FileNotFoundException, IOException {
 		return LoadProperties.getIP();
 	}
@@ -116,9 +118,13 @@ public final class DatabaseFiled {
 	 * 获取数据库链接
 	 * 
 	 * @return 数据库链接
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
+	public static String getDatabaseURL() throws FileNotFoundException, IOException {
+		return DB_URL_HEAD + "://" + get_DB_URL_IP() + ":" + get_DB_URL_PORT();
+	}
+
 	public static String getDatabaseUserInfoURL() throws FileNotFoundException, IOException {
 		return DB_URL_HEAD + "://" + get_DB_URL_IP() + ":" + get_DB_URL_PORT() + "/" + DB_DATABASE_USER_INFO;
 	}
