@@ -4,7 +4,7 @@ import salary.managment.system.Exception.LenException;
 import salary.managment.system.Exception.NameTooLongException;
 import salary.managment.system.Exception.NumIllegalException;
 
-public class BaseSalary {
+public class BasicInformationOfEmployee {
 	public static enum sexEnum {
 		man, woman
 	};
@@ -19,7 +19,7 @@ public class BaseSalary {
 	private double baseSalary;
 	private String category;
 
-	public BaseSalary(String id) throws Exception {
+	public BasicInformationOfEmployee(String id) throws Exception {
 		setId(id);
 		setName("");
 		setSex(sexEnum.man);
@@ -38,7 +38,7 @@ public class BaseSalary {
 	 * @param category   员工类别
 	 * @throws Exception 员工身份证号输入错误时抛出异常
 	 */
-	public BaseSalary(String id, String name, sexEnum sex, short age, double baseSalary, String category)
+	public BasicInformationOfEmployee(String id, String name, sexEnum sex, short age, double baseSalary, String category)
 			throws Exception {
 		setId(id);
 		setName(name);

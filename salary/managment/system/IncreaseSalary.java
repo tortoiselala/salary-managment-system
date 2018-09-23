@@ -9,7 +9,7 @@ import salary.managment.system.Exception.NumIllegalException;
  * @author Tortoise
  *
  */
-public class IncreaseSalary extends BaseSalary {
+public class IncreaseSalary extends BasicInformationOfEmployee {
 
 	private double bonus; // 员工本月奖金
 	private double allowance; // 员工本月补贴
@@ -66,7 +66,7 @@ public class IncreaseSalary extends BaseSalary {
 	public double getSumIncrease() {
 		return getBonus() + getAllowance() + getOvertimePay() + getOther();
 	}
-	
+
 	public double getSalary() {
 		return getBaseSalary() + getSumIncrease();
 	}

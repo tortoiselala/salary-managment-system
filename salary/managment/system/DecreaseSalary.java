@@ -9,7 +9,7 @@ import salary.managment.system.Exception.NumIllegalException;
  * @author Tortoise
  *
  */
-public class DecreaseSalary extends BaseSalary {
+public class DecreaseSalary extends BasicInformationOfEmployee {
 
 	// sickDeduction 病事扣款
 	private double sickFee;
