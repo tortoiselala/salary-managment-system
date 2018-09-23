@@ -3,9 +3,6 @@
  */
 package salary.managment.system;
 
-import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
 /**
  * @author Tortoise
  *
