@@ -4,6 +4,9 @@
 package salary.managment.system;
 
 import java.sql.*;
+import java.util.List;
+
+import java.util.ArrayList;
 
 /**
  * @author Tortoise
@@ -13,8 +16,9 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 	public static void main(String[] args) {
 		BasicInformationOfEmployeeManagment test;
 		try {
-			test = new BasicInformationOfEmployeeManagment("620421199908145140", "tort", man, (short) 10, 10000, "test");
-			test.addOrUpdateEmployee();
+			test = new BasicInformationOfEmployeeManagment("620421199908145140", "tort", man, (short) 10, 10000,
+					"test");
+			test.deleteEmployeeInformation();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,8 +75,18 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 		return false;
 	}
 
+	public boolean deleteEmployeeInformation() throws ClassNotFoundException, SQLException {
+		getConnection();
+		String sql = "DELETE FROM " + DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM
+				+ " WHERE " + DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_ID
+				+ " = \"" + getId() + "\"";
+		statement.executeUpdate(sql);
+		connection.close();
+		return true;
+	}
+
 	public void addOrUpdateEmployee() throws ClassNotFoundException, SQLException {
-		
+
 		String sql;
 
 		if (isEmployeeInformationExits()) {
@@ -99,14 +113,37 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_AGE + ", "
 					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY + ", "
 					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY
-					+ ") VALUES  (" + " \"" + getId() + "\", " + " \"" + getName() + "\", " +  getSex() +", "
-					 + getAge()  +", " + getBaseSalary() +", "+ " \"" + getCategory() + "\" "
-					+ ")";
+					+ ") VALUES  (" + " \"" + getId() + "\", " + " \"" + getName() + "\", " + getSex() + ", " + getAge()
+					+ ", " + getBaseSalary() + ", " + " \"" + getCategory() + "\" " + ")";
 			System.out.println("insert");
-			
+
 		}
 		getConnection();
 		statement.executeUpdate(sql);
 		connection.close();
+	}
+
+	public List<String[]> getAllEmployeeInformation() throws SQLException {
+		List<String[]> result = new ArrayList<String[]>();
+		String sql = "SELECT * FROM "
+				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM;
+		ResultSet resultSet = statement.executeQuery(sql);
+		while (resultSet.next()) {
+			String[] tmp = new String[6];
+			tmp[0] = resultSet
+					.getString(DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_ID);
+			tmp[1] = resultSet
+					.getString(DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_NAME);
+			tmp[2] = Short.toString(resultSet
+					.getShort(DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SEX));
+			tmp[3] = Short.toString(resultSet
+					.getShort(DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_AGE));
+			tmp[4] = Double.toString(resultSet.getDouble(
+					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY));
+			tmp[5] = resultSet.getString(
+					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY);
+			result.add(tmp);
+		}
+		return result;
 	}
 }
