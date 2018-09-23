@@ -5,6 +5,7 @@ package salary.managment.system;
 
 import java.sql.*;
 
+import javafx.scene.control.ColorPicker;
 import salary.managment.system.DatabaseFiled;
 import salary.managment.system.Exception.LenException;
 
@@ -33,10 +34,12 @@ import salary.managment.system.Exception.LenException;
  *         </p>
  */
 public class UserManagment {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		UserManagment test_1 = new UserManagment("g_test_2", "g_test_2");
 		try {
-			System.out.println("-----------test case 1, usr_name :g_test_2, usr_pass :g_test_2----------");
+			System.out.println("-------------------begin: test case 1----------");
+			System.out.println("       user name: g_test_2");
+			System.out.println("       user pass: g_test_2");
 			System.out.println("test:getAllAdmin");
 			String[][] allAdmin = test_1.getAllAdminUser();
 			for (String[] e : allAdmin) {
@@ -45,7 +48,7 @@ public class UserManagment {
 				System.out.println(e[2]);
 			}
 			System.out.println();
-			System.out.println("test:getAllGener");
+			System.out.println("test case 1:getAllGener");
 			String[][] allGener = test_1.getAllGenerUser();
 			for (String[] e : allGener) {
 				System.out.print(e[0] + "  ");
@@ -53,23 +56,23 @@ public class UserManagment {
 				System.out.println(e[2]);
 			}
 			System.out.println();
-			System.out.println("test:isAdminUser pass: false");
+			System.out.println("test case 2.1:isAdminUser pass: false");
 			if (test_1.isAdminUser(false)) {
-				System.out.println("isAdminUser:  true");
+				System.out.println("isAdminUser: true");
 			} else {
-				System.out.println("isAdminUser:  false");
+				System.out.println("isAdminUser: false");
 			}
 			System.out.println();
-			System.out.println("test:isAdminUser pass:true");
+			System.out.println("test case 2.2:isAdminUser pass:true");
 			if (test_1.isAdminUser(true)) {
-				System.out.println("isAdminUser:  true");
+				System.out.println("isAdminUser: true");
 			} else {
-				System.out.println("isAdminUser:  false");
+				System.out.println("isAdminUser: false");
 			}
-			System.out.println("-----------end :test case 1------------------------");
+			System.out.println("---------------------end: test case 1----------");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw e;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,8 +107,10 @@ public class UserManagment {
 		if (isAdminUser(false)) {
 			return false;
 		}
-		if (adminName.length() > 12 || adminName.length() > 18) {
-			throw new LenException("to long length of name or password!");
+		int adminNameLength = adminName.length();
+		int adminPassLength = adminPass.length();
+		if (adminNameLength == 0 || adminPassLength == 0 || adminNameLength > 12 || adminPassLength > 18) {
+			throw new LenException("Illegal length of name or password!");
 		}
 		// COMMAND:
 		// INSERT INTO user_admin
@@ -128,8 +133,10 @@ public class UserManagment {
 		if (isAdminUser(false)) {
 			return false;
 		}
-		if (adminName.length() > 12 || adminName.length() > 18) {
-			throw new LenException("to long length of name or password!");
+		int adminNameLength = adminName.length();
+		int adminPassLength = adminPass.length();
+		if (adminNameLength == 0 || adminPassLength == 0 || adminNameLength > 12 || adminPassLength > 18) {
+			throw new LenException("Illegal length of name or password!");
 		}
 		// COMMAND:
 		// INSERT INTO user_gener
@@ -212,19 +219,24 @@ public class UserManagment {
 		String sql = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN;
 		ResultSet resultSet = statement.executeQuery(sql);
 		while (resultSet.next()) {
-			if (!adminName.equals(
-					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_NAME))) {
-				connection.close();
-				return false;
-			}
-			if (checkPassFlag && !adminPass.equals(
-					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_PASS))) {
-				connection.close();
-				return false;
+			if (checkPassFlag) {
+				if (adminName.equals(
+						resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_NAME))
+						&& adminPass.equals(resultSet
+								.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_PASS))) {
+					connection.close();
+					return true;
+				}
+			} else {
+				if (adminName.equals(
+						resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN_USER_ADDMIN_NAME))) {
+					connection.close();
+					return true;
+				}
 			}
 		}
 		connection.close();
-		return true;
+		return false;
 	}
 
 	public boolean isGenerUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {
@@ -232,16 +244,23 @@ public class UserManagment {
 		String sqlCheckString = "SELECT * FROM " + DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER;
 		ResultSet resultSet = statement.executeQuery(sqlCheckString);
 		while (resultSet.next()) {
-			if (!adminName.equals(
-					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_NAME))) {
-				return false;
-			}
-			if (checkPassFlag && !adminPass.equals(
-					resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_PASS))) {
-				return false;
+			if (checkPassFlag) {
+				if (adminName.equals(
+						resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_NAME))
+						&& adminPass.equals(resultSet
+								.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_PASS))) {
+					connection.close();
+					return true;
+				}
+			} else {
+				if (adminName.equals(
+						resultSet.getString(DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER_USER_GENER_NAME))) {
+					connection.close();
+					return true;
+				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public boolean isUser(boolean checkPassFlag) throws SQLException, ClassNotFoundException {

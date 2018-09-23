@@ -3,6 +3,8 @@
  */
 package salary.managment.system;
 
+import salary.managment.system.Exception.NumIllegalException;
+
 /**
  * @author Tortoise
  *
@@ -21,11 +23,18 @@ public class DecreaseSalary extends BaseSalary {
 	private double otherFee;
 
 	/**
-	 * @throws Exception
 	 * 
+	 * @param id
+	 * @param name
+	 * @param sex
+	 * @param age
+	 * @param baseSalary
+	 * @param category
+	 * @throws Exception
+	 * @throws NumIllegalException
 	 */
 	public DecreaseSalary(String id, String name, sexEnum sex, short age, double baseSalary, String category)
-			throws Exception {
+			throws Exception, NumIllegalException {
 		super(id, name, sex, age, baseSalary, category);
 		setSickFee(0);
 		setChildCareFee(0);
@@ -35,15 +44,47 @@ public class DecreaseSalary extends BaseSalary {
 
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param sex
+	 * @param age
+	 * @param baseSalary
+	 * @param category
+	 * @param sickFee
+	 * @param childCareFee
+	 * @param rentFee
+	 * @param waterElectricityFee
+	 * @param otherFee
+	 * @throws Exception
+	 * @throws NumIllegalException
+	 */
 	public DecreaseSalary(String id, String name, sexEnum sex, short age, double baseSalary, String category,
 			double sickFee, double childCareFee, double rentFee, double waterElectricityFee, double otherFee)
-			throws Exception {
+			throws Exception, NumIllegalException {
 		super(id, name, sex, age, baseSalary, category);
 		setSickFee(sickFee);
 		setChildCareFee(childCareFee);
 		setRentFee(rentFee);
 		setWaterElectricityFee(waterElectricityFee);
 		setOtherFee(otherFee);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public double getSumDecrease() {
+		return getSickFee() + getChildCareFee() + getRentFee() + getWaterElectricityFee() + getOtherFee();
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public double getSalary() {
+		return getBaseSalary() - getSumDecrease();
 	}
 
 	/**
@@ -57,9 +98,9 @@ public class DecreaseSalary extends BaseSalary {
 	 * @param sickFee the sickFee to set
 	 * @throws Exception
 	 */
-	public void setSickFee(double sickFee) throws Exception {
+	public void setSickFee(double sickFee) throws NumIllegalException {
 		if (sickFee < 0) {
-			throw new Exception("Illegal num!");
+			throw new NumIllegalException();
 		}
 		this.sickFee = sickFee;
 	}
@@ -75,9 +116,9 @@ public class DecreaseSalary extends BaseSalary {
 	 * @param childCareFee the childCareFee to set
 	 * @throws Exception
 	 */
-	public void setChildCareFee(double childCareFee) throws Exception {
+	public void setChildCareFee(double childCareFee) throws NumIllegalException {
 		if (childCareFee < 0) {
-			throw new Exception("Illegal num!");
+			throw new NumIllegalException();
 		}
 		this.childCareFee = childCareFee;
 	}
@@ -93,9 +134,9 @@ public class DecreaseSalary extends BaseSalary {
 	 * @param rentFee the rentFee to set
 	 * @throws Exception
 	 */
-	public void setRentFee(double rentFee) throws Exception {
+	public void setRentFee(double rentFee) throws NumIllegalException {
 		if (rentFee < 0) {
-			throw new Exception("Illegal num!");
+			throw new NumIllegalException();
 		}
 		this.rentFee = rentFee;
 	}
@@ -111,9 +152,9 @@ public class DecreaseSalary extends BaseSalary {
 	 * @param waterElectricityFee the waterElectricityFee to set
 	 * @throws Exception
 	 */
-	public void setWaterElectricityFee(double waterElectricityFee) throws Exception {
+	public void setWaterElectricityFee(double waterElectricityFee) throws NumIllegalException {
 		if (waterElectricityFee < 0) {
-			throw new Exception("Illegal num!");
+			throw new NumIllegalException();
 		}
 		this.waterElectricityFee = waterElectricityFee;
 	}
@@ -129,12 +170,11 @@ public class DecreaseSalary extends BaseSalary {
 	 * @param otherFee the otherFee to set
 	 * @throws Exception
 	 */
-	public void setOtherFee(double otherFee) throws Exception {
+	public void setOtherFee(double otherFee) throws NumIllegalException {
 		if (otherFee < 0) {
-			throw new Exception("Illegal num!");
+			throw new NumIllegalException();
 		}
 		this.otherFee = otherFee;
 	}
-	
 
 }

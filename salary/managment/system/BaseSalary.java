@@ -1,5 +1,9 @@
 package salary.managment.system;
 
+import salary.managment.system.Exception.LenException;
+import salary.managment.system.Exception.NameTooLongException;
+import salary.managment.system.Exception.NumIllegalException;
+
 public class BaseSalary {
 	public static enum sexEnum {
 		man, woman
@@ -55,20 +59,20 @@ public class BaseSalary {
 	 * @param iD the iD to set
 	 * @throws Exception
 	 */
-	public void setId(String id) throws Exception {
+	public void setId(String id) throws LenException{
 		char[] idToCharArray = id.toCharArray();
 		int idLength = idToCharArray.length;
 		if (idLength != 18) {
-			throw new Exception("Incorrencted length of ID!");
+			throw new LenException("Incorrencted length of ID!");
 		}
 		for (int i = 0; i < idLength - 1; i++) {
 			if (idToCharArray[i] < '0' || idToCharArray[i] > '9') {
-				throw new Exception("Incorrect format of ID");
+				throw new LenException("Incorrect format of ID");
 			}
 		}
 		char idLastChar = idToCharArray[idLength - 1];
 		if (idLastChar > '9' && idLastChar < '0' && idLastChar != 'x' && idLastChar != 'X') {
-			throw new Exception("Incorrect format of ID");
+			throw new LenException("Incorrect format of ID");
 		}
 		this.id = id;
 	}
@@ -84,9 +88,9 @@ public class BaseSalary {
 	 * @param name the name to set
 	 * @throws Exception
 	 */
-	public void setName(String name) throws Exception {
-		if (name.length() >= 5) {
-			throw new Exception("Too long name length!");
+	public void setName(String name) throws NameTooLongException {
+		if (name.length() >= 12) {
+			throw new NameTooLongException();
 		}
 		this.name = name;
 	}
@@ -116,9 +120,9 @@ public class BaseSalary {
 	 * @param age the age to set
 	 * @throws Exception
 	 */
-	public void setAge(short age) throws Exception {
+	public void setAge(short age) throws NumIllegalException {
 		if (age <= 0 || age >= 150) {
-			throw new Exception("Illegal age num!");
+			throw new NumIllegalException();
 		}
 		this.age = age;
 	}
@@ -134,9 +138,9 @@ public class BaseSalary {
 	 * @param baseSalary the baseSalary to set
 	 * @throws Exception
 	 */
-	public void setBaseSalary(double baseSalary) throws Exception {
+	public void setBaseSalary(double baseSalary) throws NumIllegalException {
 		if (baseSalary < 0) {
-			throw new Exception("Illegal base salary num!");
+			throw new NumIllegalException("Illegal base salary num!");
 		}
 		this.baseSalary = baseSalary;
 	}
