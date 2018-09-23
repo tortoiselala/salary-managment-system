@@ -5,7 +5,7 @@ package salary.managment.system;
 
 import java.sql.*;
 
-import javafx.scene.control.ColorPicker;
+
 import salary.managment.system.DatabaseFiled;
 import salary.managment.system.Exception.LenException;
 
@@ -81,8 +81,8 @@ public class UserManagment {
 
 	private String adminName;
 	private String adminPass;
-	Connection connection;
-	Statement statement;
+	private Connection connection;
+	private Statement statement;
 
 	/**
 	 * 

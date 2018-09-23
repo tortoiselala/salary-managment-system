@@ -5,27 +5,24 @@ import salary.managment.system.Exception.NameTooLongException;
 import salary.managment.system.Exception.NumIllegalException;
 
 public class BasicInformationOfEmployee {
-	public static enum sexEnum {
-		man, woman
-	};
 
-	public final static boolean man = true;
-	public final static boolean women = false;
+	public final static short man = 1;
+	public final static short women = 0;
 
 	private String id;
 	private String name;
-	private sexEnum sex;
+	private short sex;
 	private short age;
 	private double baseSalary;
 	private String category;
 
-	public BasicInformationOfEmployee(String id) throws Exception {
+	public BasicInformationOfEmployee(String id, String name) throws Exception {
 		setId(id);
-		setName("");
-		setSex(sexEnum.man);
+		setName(name);
+		setSex(man);
 		setAge((short) 0);
 		setBaseSalary(0);
-		setCategory("");
+		setCategory("general_staff");
 	}
 
 	/**
@@ -38,8 +35,8 @@ public class BasicInformationOfEmployee {
 	 * @param category   员工类别
 	 * @throws Exception 员工身份证号输入错误时抛出异常
 	 */
-	public BasicInformationOfEmployee(String id, String name, sexEnum sex, short age, double baseSalary, String category)
-			throws Exception {
+	public BasicInformationOfEmployee(String id, String name, short sex, short age, double baseSalary,
+			String category) throws Exception {
 		setId(id);
 		setName(name);
 		setSex(sex);
@@ -59,7 +56,7 @@ public class BasicInformationOfEmployee {
 	 * @param iD the iD to set
 	 * @throws Exception
 	 */
-	public void setId(String id) throws LenException{
+	public void setId(String id) throws LenException {
 		char[] idToCharArray = id.toCharArray();
 		int idLength = idToCharArray.length;
 		if (idLength != 18) {
@@ -98,14 +95,14 @@ public class BasicInformationOfEmployee {
 	/**
 	 * @return the sex
 	 */
-	public sexEnum getSex() {
+	public short getSex() {
 		return sex;
 	}
 
 	/**
 	 * @param sex the sex to set
 	 */
-	public void setSex(sexEnum sex) {
+	public void setSex(short sex) {
 		this.sex = sex;
 	}
 

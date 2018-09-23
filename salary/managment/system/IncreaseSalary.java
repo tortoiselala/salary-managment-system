@@ -27,7 +27,7 @@ public class IncreaseSalary extends BasicInformationOfEmployee {
 	 * @throws Exception
 	 * @throws NumIllegalException
 	 */
-	public IncreaseSalary(String id, String name, sexEnum sex, short age, double baseSalary, String category)
+	public IncreaseSalary(String id, String name, short sex, short age, double baseSalary, String category)
 			throws Exception, NumIllegalException {
 		super(id, name, sex, age, baseSalary, category);
 		setBonus(0);
@@ -50,7 +50,7 @@ public class IncreaseSalary extends BasicInformationOfEmployee {
 	 * @param other       本月其他奖金
 	 * @throws Exception
 	 */
-	public IncreaseSalary(String id, String name, sexEnum sex, short age, double baseSalary, String category,
+	public IncreaseSalary(String id, String name, short sex, short age, double baseSalary, String category,
 			double bonus, double allowance, double overtimePay, double other) throws Exception, NumIllegalException {
 		super(id, name, sex, age, baseSalary, category);
 		setBonus(bonus);

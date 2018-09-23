@@ -33,7 +33,7 @@ public class DecreaseSalary extends BasicInformationOfEmployee {
 	 * @throws Exception
 	 * @throws NumIllegalException
 	 */
-	public DecreaseSalary(String id, String name, sexEnum sex, short age, double baseSalary, String category)
+	public DecreaseSalary(String id, String name, short sex, short age, double baseSalary, String category)
 			throws Exception, NumIllegalException {
 		super(id, name, sex, age, baseSalary, category);
 		setSickFee(0);
@@ -60,7 +60,7 @@ public class DecreaseSalary extends BasicInformationOfEmployee {
 	 * @throws Exception
 	 * @throws NumIllegalException
 	 */
-	public DecreaseSalary(String id, String name, sexEnum sex, short age, double baseSalary, String category,
+	public DecreaseSalary(String id, String name, short sex, short age, double baseSalary, String category,
 			double sickFee, double childCareFee, double rentFee, double waterElectricityFee, double otherFee)
 			throws Exception, NumIllegalException {
 		super(id, name, sex, age, baseSalary, category);

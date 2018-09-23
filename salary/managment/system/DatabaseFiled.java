@@ -3,6 +3,8 @@
  */
 package salary.managment.system;
 
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 /**
  * @author Tortoise
@@ -68,11 +70,34 @@ public final class DatabaseFiled {
 	 */
 	public static final String DB_DATABASE_BASE_INFORMATION = "base_information";
 	/**
-	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_USER_COLLECTION_NAME} 存储员工基本信息
-	 * 
-	 * @see
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_USER_COLLECTION_NAME} 存储员工基本信息表的名称
 	 */
-	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_USER_COLLECTION_NAME = "user_collection";
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM = "employee_basic_information_form";
+	/**
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_ID}存储员工基本信息表的第一列名称，员工身份证号
+	 */
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_ID = "id";
+	/**
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_NAME}存储员工基本信息表的第二列名称，员工姓名
+	 */
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_NAME = "name";
+	/**
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SEX}存储员工基本信息表的第三列名称，员工性别，字段值为1（男）或0（女）
+	 */
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SEX = "sex";
+	/**
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_AGE}存储员工基本信息表的第四列名称，员工年龄
+	 */
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_AGE = "age";
+	/**
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY}存储员工基本信息表的第五列名称，
+	 * 员工基本薪资
+	 */
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY = "baseSalary";
+	/**
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY}存储员工基本信息表的第六列名称，员工类别
+	 */
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY = "category";
 	/**
 	 * <ul>
 	 * <li>{@code DB_DATABASE_ROOT_NAME}数据库登录账号</li>
@@ -89,5 +114,10 @@ public final class DatabaseFiled {
 	 */
 	public static String getDatabaseUserInfoURL() {
 		return DB_URL_HEAD + "://" + DB_URL_URL + ":" + DB_URL_PORT + "/" + DB_DATABASE_USER_INFO;
+	}
+
+	public static String getDatabaseBaseInformationURL() {
+		return DB_URL_HEAD + "://" + DB_URL_URL + ":" + DB_URL_PORT + "/"
+				+ DB_DATABASE_BASE_INFORMATION;
 	}
 }
