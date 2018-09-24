@@ -3,11 +3,12 @@
  */
 package salary.managment.system.view;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-
 
 /**
  * @author Tortoise
@@ -47,13 +48,39 @@ public class AppConstantsField {
 	/**
 	 * 用来读取配置文件的关键字
 	 */
-	public static String KEY_EN_US = "en_US";
-	public static String KEY_ZH_CN = "zh_CN";
-	public static String KEY_LANGUAGE = "language";
-	public static String KEY_SYSTEM_NAME = "system_name";
-	public static String KEY_USER_NAME = "user_name";
-	public static String KEY_USER_PASS = "user_pass";
-	public static String KEY_SIGN_IN = "sign_in";
+	public final static String KEY_EN_US = "en_US";
+	public final static String KEY_ZH_CN = "zh_CN";
+	public final static String KEY_LANGUAGE = "language";
+	public final static String KEY_SYSTEM_NAME = "system_name";
+	public final static String KEY_USER_NAME = "user_name";
+	public final static String KEY_USER_PASS = "user_pass";
+	public final static String KEY_SIGN_IN = "sign_in";
+	// 软件名称
+	public final static String APP_NAME = "Salary Manager";
+	// 软件图标路径
+	public final static String PATH_APP_ICON = "/icon/APP_ICON.png";
+
+	// 系统屏幕大小：系統屏幕寬度
+	public final static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+	// 系统屏幕大小：系统屏幕高度
+	public final static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+
+	// 登录窗口默认大小：窗口宽度
+	public final static int loginWindowWidth = 535;
+	// 登录窗口默认大小：窗口高度
+	public final static int loginWindowHeight = 412;
+
+	// 登录窗口默认位置: 登录窗口横向坐标
+	public final static int loginWindowXPosition = screenWidth / 2 - loginWindowWidth / 2;
+
+	// 登录窗口默认位置: 登录窗口纵向坐标
+
+	public final static int loginWindowYPosition = screenHeight / 2 - loginWindowHeight / 2;
+
+	// 系统图标
+	// Thread.currentThread().getContextClassLoader()
+	public final static Image APP_ICON = Toolkit.getDefaultToolkit()
+			.getImage(LoginFrame.class.getResource(PATH_APP_ICON));
 
 	public AppConstantsField() {
 
@@ -62,7 +89,7 @@ public class AppConstantsField {
 	// login interface filed
 	public void loginInterfaceFiled() throws FileNotFoundException, IOException {
 		Properties properties_EN_US = new Properties();
-		
+
 		properties_EN_US.setProperty(KEY_LANGUAGE, "en_US");
 		properties_EN_US.setProperty(KEY_SYSTEM_NAME, "Salary Managment System");
 		properties_EN_US.setProperty(KEY_USER_NAME, "Username");
