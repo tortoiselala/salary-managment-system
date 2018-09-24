@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
 
 /**
  * @author Tortoise
@@ -70,7 +69,7 @@ public class AppConstantsField {
 		properties_EN_US.setProperty(KEY_USER_PASS, "Password");
 		properties_EN_US.setProperty(KEY_SIGN_IN, "Sign in");
 
-		properties_EN_US.store(new FileOutputStream("salary/managment/system/properties/" + FILE_NAME_EN_US),
+		properties_EN_US.store(new FileOutputStream("salary/managment/system/config/" + FILE_NAME_EN_US),
 				"interface language properties:en_US");
 
 		Properties properties_ZH_CN = new Properties();
@@ -81,7 +80,7 @@ public class AppConstantsField {
 		properties_ZH_CN.setProperty(KEY_USER_PASS, "密码");
 		properties_ZH_CN.setProperty(KEY_SIGN_IN, "登录");
 
-		properties_ZH_CN.store(new FileOutputStream("salary/managment/system/properties/" + FILE_NAME_ZH_CN),
+		properties_ZH_CN.store(new FileOutputStream("salary/managment/system/config/" + FILE_NAME_ZH_CN),
 				"interface language properties:en_US");
 
 	}
