@@ -1,15 +1,13 @@
 /**
  * 
  */
-package salary.managment.system;
+package salary.managment.system.base;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-import com.sun.org.apache.bcel.internal.generic.I2F;
 
 import java.sql.*;
 
@@ -18,6 +16,9 @@ import java.sql.*;
  *
  */
 public class InitDatabase {
+	public static void main(String[] args) {
+		Init();
+	}
 
 	/**
 	 * 不允许初始化该类，使用静态方式init()来初始化数据库
@@ -95,10 +96,8 @@ public class InitDatabase {
 			ResultSet resultSet = databaseMetaData.getTables(null, null,
 					DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_ADMIN, null);
 			if (!resultSet.next()) {
-				statement.executeUpdate("CREATE TABLE user_admin( " + "`user_admin_name` char(12) NOT NULL,  "
-						+ "`user_admin_pass` char(18) DEFAULT NULL, "
-						+ "`user_admin_create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "
-						+ "PRIMARY KEY (`user_admin_name`)");
+				statement.executeUpdate(
+						"CREATE TABLE user_admin( user_admin_name char(12) NOT NULL,  user_admin_pass char(18) DEFAULT NULL, user_admin_create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (user_admin_name))");
 			}
 			resultSet = databaseMetaData.getTables(null, null, DatabaseFiled.DB_DATABASE_USER_INFO_TABLE_USER_GENER,
 					null);

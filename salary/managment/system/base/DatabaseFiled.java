@@ -1,7 +1,7 @@
 /**
  * 
  */
-package salary.managment.system;
+package salary.managment.system.base;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

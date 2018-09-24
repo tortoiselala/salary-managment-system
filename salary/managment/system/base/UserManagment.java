@@ -1,14 +1,14 @@
 /**
  * 
  */
-package salary.managment.system;
+package salary.managment.system.base;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 
 
-import salary.managment.system.DatabaseFiled;
+import salary.managment.system.base.DatabaseFiled;
 import salary.managment.system.Exception.LenException;
 
 /**

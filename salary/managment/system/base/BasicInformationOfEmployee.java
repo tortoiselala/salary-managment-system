@@ -1,4 +1,4 @@
-package salary.managment.system;
+package salary.managment.system.base;
 
 import salary.managment.system.Exception.LenException;
 import salary.managment.system.Exception.NameTooLongException;
