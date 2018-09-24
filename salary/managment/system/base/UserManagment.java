@@ -72,6 +72,8 @@ public class UserManagment {
 				System.out.println("isAdminUser: false");
 			}
 			System.out.println("---------------------end: test case 1----------");
+			
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw e;
@@ -84,6 +86,21 @@ public class UserManagment {
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+		try {
+			test_1.tryCreateAdminUser();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LenException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

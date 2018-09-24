@@ -22,8 +22,8 @@ public class LoadProperties {
 		properties.setProperty("ip", "localhost");
 		properties.setProperty("port", "3306");
 		properties.setProperty("root_pass", "1546191727");
-
-		properties.store(new FileOutputStream("salary/managment/system/config/.properties"), "comment");
+		System.out.println(System.getProperty("user.dir"));
+		properties.store(new FileOutputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"), "comment");
 
 		System.out.println(LoadProperties.getIP());
 		System.out.println(LoadProperties.getPort());
@@ -51,7 +51,7 @@ public class LoadProperties {
 	 */
 	public static void setIP() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("salary/managment/system/config/.properties"));
+		properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"));
 		LoadProperties.IP = properties.getProperty("ip", "localhost");
 	}
 
@@ -72,7 +72,7 @@ public class LoadProperties {
 	 */
 	public static void setPort() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("salary/managment/system/config/.properties"));
+		properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"));
 		LoadProperties.port = properties.getProperty("port", "3306");
 	}
 
@@ -93,7 +93,7 @@ public class LoadProperties {
 	 */
 	public static void setRootPass() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("salary/managment/system/config/.properties"));
+		properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"));
 		LoadProperties.rootPass = properties.getProperty("root_pass");
 	}
 

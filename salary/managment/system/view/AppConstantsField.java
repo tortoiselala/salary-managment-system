@@ -4,6 +4,7 @@
 package salary.managment.system.view;
 
 import java.awt.Image;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -55,6 +56,9 @@ public class AppConstantsField {
 	public final static String KEY_USER_NAME = "user_name";
 	public final static String KEY_USER_PASS = "user_pass";
 	public final static String KEY_SIGN_IN = "sign_in";
+	public final static String KEY_LOGIN_SUCCESSFUL = "login_successful";
+	public final static String KEY_USERNAME_OR_PASSWORD_UNCORRECT = "account_or_password_is_incorrect";
+	public final static String KEY_ERROR = "error";
 	// 软件名称
 	public final static String APP_NAME = "Salary Manager";
 	// 软件图标路径
@@ -72,15 +76,19 @@ public class AppConstantsField {
 
 	// 登录窗口默认位置: 登录窗口横向坐标
 	public final static int loginWindowXPosition = screenWidth / 2 - loginWindowWidth / 2;
-
 	// 登录窗口默认位置: 登录窗口纵向坐标
-
 	public final static int loginWindowYPosition = screenHeight / 2 - loginWindowHeight / 2;
 
 	// 系统图标
 	// Thread.currentThread().getContextClassLoader()
 	public final static Image APP_ICON = Toolkit.getDefaultToolkit()
 			.getImage(LoginFrame.class.getResource(PATH_APP_ICON));
+	// 登录窗口背景色
+	public final static Color loginWindowBackColor = Color.WHITE;
+	// 工具栏背景色
+	public final static Color toolBarBackColor = new Color(37, 174, 96);
+	// 表格线条背景色
+	public final static Color tableLineColor = new Color(229, 229, 229);
 
 	public AppConstantsField() {
 
@@ -92,22 +100,30 @@ public class AppConstantsField {
 
 		properties_EN_US.setProperty(KEY_LANGUAGE, "en_US");
 		properties_EN_US.setProperty(KEY_SYSTEM_NAME, "Salary Managment System");
-		properties_EN_US.setProperty(KEY_USER_NAME, "Username");
-		properties_EN_US.setProperty(KEY_USER_PASS, "Password");
+		properties_EN_US.setProperty(KEY_USER_NAME, "Username: ");
+		properties_EN_US.setProperty(KEY_USER_PASS, "Password: ");
 		properties_EN_US.setProperty(KEY_SIGN_IN, "Sign in");
-
-		properties_EN_US.store(new FileOutputStream("salary/managment/system/config/" + FILE_NAME_EN_US),
+		properties_EN_US.setProperty(KEY_LOGIN_SUCCESSFUL, "login successful");
+		properties_EN_US.setProperty(KEY_USERNAME_OR_PASSWORD_UNCORRECT, "account or password is incorrect");
+		properties_EN_US.setProperty(KEY_ERROR, "error");
+		properties_EN_US.store(
+				new FileOutputStream(
+						System.getProperty("user.dir") + "/src/salary/managment/system/config/" + FILE_NAME_EN_US),
 				"interface language properties:en_US");
 
 		Properties properties_ZH_CN = new Properties();
 
 		properties_ZH_CN.setProperty(KEY_LANGUAGE, "zh_CN");
 		properties_ZH_CN.setProperty(KEY_SYSTEM_NAME, "工资管理系统");
-		properties_ZH_CN.setProperty(KEY_USER_NAME, "用户名");
-		properties_ZH_CN.setProperty(KEY_USER_PASS, "密码");
+		properties_ZH_CN.setProperty(KEY_USER_NAME, "用户名：");
+		properties_ZH_CN.setProperty(KEY_USER_PASS, "密  码：");
 		properties_ZH_CN.setProperty(KEY_SIGN_IN, "登录");
-
-		properties_ZH_CN.store(new FileOutputStream("salary/managment/system/config/" + FILE_NAME_ZH_CN),
+		properties_ZH_CN.setProperty(KEY_LOGIN_SUCCESSFUL, "登录成功");
+		properties_ZH_CN.setProperty(KEY_USERNAME_OR_PASSWORD_UNCORRECT, "密码或账号不正确");
+		properties_ZH_CN.setProperty(KEY_ERROR, "错误");
+		properties_ZH_CN.store(
+				new FileOutputStream(
+						System.getProperty("user.dir") + "/src/salary/managment/system/config/" + FILE_NAME_ZH_CN),
 				"interface language properties:en_US");
 
 	}
