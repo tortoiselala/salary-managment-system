@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.EventListener;
 import java.util.Properties;
@@ -95,11 +96,11 @@ public class LoginFrame extends JFrame {
 		// 设置窗口图标
 		setIconImage(AppConstantsField.APP_ICON);
 		// 设置窗口主色
-		setBackground(AppConstantsField.loginWindowBackColor);
+		getContentPane().setBackground(AppConstantsField.LOGIN_WINDOW_BACK_COLOR);
 		// 设置窗口使用默认关闭方式
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// 设置窗口位置居中显示
-		setLocation(AppConstantsField.loginWindowXPosition, AppConstantsField.loginWindowYPosition);
+		setLocation(AppConstantsField.LOGIN_WINDOW_X_POSITION, AppConstantsField.LOGIN_WINDOW_Y_POSITION);
 		// 设置窗口默认大小
 		setSize(panelWidth, panelHeight);
 		// 设置窗口总显示在顶部
@@ -119,17 +120,13 @@ public class LoginFrame extends JFrame {
 
 		Properties properties = new Properties();
 		// 獲取系统语言
-		System.out.println(System.getProperty("user.dir") + "/src/salary/managment/system/config/system.properties");
-		properties.load(new FileInputStream(
-				System.getProperty("user.dir") + "/src/salary/managment/system/config/system.properties"));
+		properties.load(new FileInputStream(PathManager.PATH_MAIN_SYSTEM_PROPERTIES));
 		String language = properties.getProperty(AppConstantsField.KEY_LANGUAGE);
 
 		if (language.equals(AppConstantsField.KEY_EN_US)) {
-			properties.load(new FileInputStream(
-					System.getProperty("user.dir") + "/src/salary/managment/system/config/en_US.properties"));
+			properties.load(new FileInputStream(PathManager.PATH_MAIN_EN_US_PROPERTIES));
 		} else {
-			properties.load(new FileInputStream(
-					System.getProperty("user.dir") + "/src/salary/managment/system/config/zh_CN.properties"));
+			properties.load(new FileInputStream(PathManager.PATH_MAIN_ZH_CN_PROPERTIES));
 
 		}
 		systemName = properties.getProperty(AppConstantsField.KEY_SYSTEM_NAME, "工资管理系统");
@@ -214,13 +211,13 @@ public class LoginFrame extends JFrame {
 					try {
 						Thread.sleep(30);
 					} catch (InterruptedException e1) {
-						JOptionPane.showMessageDialog(null, e1.getStackTrace(), error, JOptionPane.OK_CANCEL_OPTION);
+						JOptionPane.showMessageDialog(null, e1.getMessage(), error, JOptionPane.OK_CANCEL_OPTION);
 
 					}
 					closeTargetWindow();
 				}
 			} catch (BadLocationException e2) {
-				JOptionPane.showMessageDialog(null, e2.getStackTrace(), error, JOptionPane.OK_CANCEL_OPTION);
+				JOptionPane.showMessageDialog(null, e2.getMessage(), error, JOptionPane.OK_CANCEL_OPTION);
 
 			}
 		}
@@ -236,6 +233,15 @@ public class LoginFrame extends JFrame {
 					if (userManagment.isUser(true)) {
 						loginButton.setText(loginSuccessful);
 						closeSigner.setText(loginSuccessful);
+						MainFrame.isLogin = true;
+						if(userManagment.isAdminUser(true)) {
+							MainFrame.isAdmin = true;
+							MainFrame.isGener = false;
+						}
+						else {
+							MainFrame.isAdmin = false;
+							MainFrame.isGener = true;
+						}
 
 					} else {
 						JOptionPane.showMessageDialog(null, usernameOrPasswordIsIncorrect, error,
@@ -243,7 +249,7 @@ public class LoginFrame extends JFrame {
 					}
 				} catch (ClassNotFoundException | SQLException | IOException e1) {
 
-					JOptionPane.showMessageDialog(null, e1.getStackTrace(), error, JOptionPane.OK_CANCEL_OPTION);
+					JOptionPane.showMessageDialog(null, e1.getMessage(), error, JOptionPane.OK_CANCEL_OPTION);
 				}
 			}
 		}

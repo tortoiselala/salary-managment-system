@@ -7,8 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
+
+import salary.managment.system.view.PathManager;
 
 /**
  * @author Tortoise 读取配置文件
@@ -16,32 +19,27 @@ import java.util.Properties;
 public class LoadProperties {
 	public static void main(String[] args) throws InvalidPropertiesFormatException, FileNotFoundException, IOException {
 
-		// 初始化properties对象
-		Properties properties = new Properties();
-
-		properties.setProperty("ip", "localhost");
-		properties.setProperty("port", "3306");
-		properties.setProperty("root_pass", "1546191727");
-		System.out.println(System.getProperty("user.dir"));
-		properties.store(new FileOutputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"), "comment");
+		LoadProperties.setIP("localhost");
+		LoadProperties.setPort("3306");
+		LoadProperties.setRootPass("1546191727");
 
 		System.out.println(LoadProperties.getIP());
 		System.out.println(LoadProperties.getPort());
 		System.out.println(LoadProperties.getRootPass());
 	}
 
-	private static String IP;
-	private static String port;
-	private static String rootPass;
 
 	/**
-	 * @return the iP
-	 * @throws IOException
+	 * 
+	 * @return
 	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	public static String getIP() throws FileNotFoundException, IOException {
-		LoadProperties.setIP();
-		return IP;
+		Properties properties = new Properties();
+		properties.load(new FileInputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES));
+		return properties.getProperty("ip", "localhost");
+		 
 	}
 
 	/**
@@ -49,20 +47,25 @@ public class LoadProperties {
 	 * @throws IOException
 	 * @throws FileNotFoundException
 	 */
-	public static void setIP() throws FileNotFoundException, IOException {
+	public static void setIP(String ip) throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"));
-		LoadProperties.IP = properties.getProperty("ip", "localhost");
+		properties.load(new FileInputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES));
+		properties.setProperty("ip", ip);
+		System.out.println(PathManager.PATH_MAIN_DATABASE_PROPERTIES);
+		properties.store(new FileOutputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES),"database ip, default: localhost");
+		
 	}
 
 	/**
-	 * @return the port
-	 * @throws IOException
+	 * 
+	 * @return
 	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	public static String getPort() throws FileNotFoundException, IOException {
-		LoadProperties.setPort();
-		return port;
+		Properties properties = new Properties();
+		properties.load(new FileInputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES));
+		return properties.getProperty("port", "3306");
 	}
 
 	/**
@@ -70,10 +73,11 @@ public class LoadProperties {
 	 * @throws IOException
 	 * @throws FileNotFoundException
 	 */
-	public static void setPort() throws FileNotFoundException, IOException {
+	public static void setPort(String port) throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"));
-		LoadProperties.port = properties.getProperty("port", "3306");
+		properties.load(new FileInputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES));
+		properties.setProperty("port", port);
+		properties.store(new FileOutputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES),"database port, default: 3306");
 	}
 
 	/**
@@ -82,8 +86,9 @@ public class LoadProperties {
 	 * @throws FileNotFoundException 
 	 */
 	public static String getRootPass() throws FileNotFoundException, IOException {
-		LoadProperties.setRootPass();
-		return rootPass;
+		Properties properties = new Properties();
+		properties.load(new FileInputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES));
+		return properties.getProperty("root_pass", "1546191727");
 	}
 
 	/**
@@ -91,10 +96,11 @@ public class LoadProperties {
 	 * @throws IOException
 	 * @throws FileNotFoundException
 	 */
-	public static void setRootPass() throws FileNotFoundException, IOException {
+	public static void setRootPass(String rootPass) throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/salary/managment/system/config/.properties"));
-		LoadProperties.rootPass = properties.getProperty("root_pass");
+		properties.load(new FileInputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES));
+		properties.setProperty("root_pass", rootPass);
+		properties.store(new FileOutputStream(PathManager.PATH_MAIN_DATABASE_PROPERTIES),"database root password, default: 1546191727");
 	}
 
 }
