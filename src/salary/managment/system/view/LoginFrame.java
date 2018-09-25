@@ -9,6 +9,7 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
 
 import salary.managment.system.base.UserManagment;
 
@@ -61,6 +65,7 @@ public class LoginFrame extends JFrame {
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JButton loginButton;
+	private JTextField closeSigner;
 
 	private String systemName;
 	private String userName;
@@ -69,6 +74,7 @@ public class LoginFrame extends JFrame {
 	private String loginSuccessful;
 	private String usernameOrPasswordIsIncorrect;
 	private String error;
+
 	private static int panelWidth = 535;
 	private static int panelHeight = 412;
 
@@ -103,6 +109,10 @@ public class LoginFrame extends JFrame {
 		setResizable(false);
 		// 设置窗口显示
 		setVisible(true);
+	}
+
+	public void closeTargetWindow() {
+		this.dispose();
 	}
 
 	private void getPanelText() throws FileNotFoundException, IOException {
@@ -141,6 +151,7 @@ public class LoginFrame extends JFrame {
 		passwordField.setPreferredSize(new Dimension(panelWidth / 2, panelHeight / 9));
 		passwordField.setVisible(true);
 		loginButton = new JButton(signin);
+		closeSigner = new JTextField(signin);
 
 		setLayout(new GridBagLayout());
 		add(systemNameLabel, getCommonentGridBagConstraints(100, 100, 0, 0, 8, 1, GridBagConstraints.NONE,
@@ -173,6 +184,46 @@ public class LoginFrame extends JFrame {
 
 	private void addLoginButtonListerer() {
 		loginButton.addActionListener(new LoginButtonListener());
+		closeSigner.getDocument().addDocumentListener(new CloseTargetWindowListener());
+	}
+
+	class CloseTargetWindowListener implements DocumentListener {
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			System.out.println("update");
+			insertOrRemoveOrUpdate(e);
+		}
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			System.out.println("insert");
+			insertOrRemoveOrUpdate(e);
+		}
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			System.out.println("remove");
+		}
+
+		private void insertOrRemoveOrUpdate(DocumentEvent e) {
+			int documentLength = e.getLength();
+			try {
+				String documentText = e.getDocument().getText(0, documentLength);
+				if (documentText.equals(loginSuccessful)) {
+					try {
+						Thread.sleep(30);
+					} catch (InterruptedException e1) {
+						JOptionPane.showMessageDialog(null, e1.getStackTrace(), error, JOptionPane.OK_CANCEL_OPTION);
+
+					}
+					closeTargetWindow();
+				}
+			} catch (BadLocationException e2) {
+				JOptionPane.showMessageDialog(null, e2.getStackTrace(), error, JOptionPane.OK_CANCEL_OPTION);
+
+			}
+		}
 	}
 
 	class LoginButtonListener implements ActionListener {
@@ -184,6 +235,8 @@ public class LoginFrame extends JFrame {
 				try {
 					if (userManagment.isUser(true)) {
 						loginButton.setText(loginSuccessful);
+						closeSigner.setText(loginSuccessful);
+
 					} else {
 						JOptionPane.showMessageDialog(null, usernameOrPasswordIsIncorrect, error,
 								JOptionPane.OK_CANCEL_OPTION);
