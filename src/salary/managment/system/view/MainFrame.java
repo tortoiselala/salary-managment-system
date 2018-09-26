@@ -53,6 +53,14 @@ public class MainFrame extends JFrame {
 	public static boolean isAdmin = false;
 	public static boolean isGener = false;
 
+	public static JPanel panelMain;
+	public static JPanel panelInputAndModification;
+	public static JPanel panelComputeAndPrintSalary;
+	public static JPanel panelInauirySalary;
+	public static JPanel panelSystemMaintenance;
+	public static JPanel panelSystemSettings;
+	public static JPanel panelAbout;
+
 	public MainFrame() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			FileNotFoundException, UnsupportedLookAndFeelException, IOException {
 		initFrame();
@@ -62,7 +70,7 @@ public class MainFrame extends JFrame {
 			UnsupportedLookAndFeelException, FileNotFoundException, IOException {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		setToolBar();
-		
+
 		// 设置窗口监听器
 		addWindowListener(new mainFrameWindowListener());
 		// 系统语言以及字符串
@@ -105,7 +113,7 @@ public class MainFrame extends JFrame {
 
 	public void setToolBar() throws FileNotFoundException, IOException {
 		this.setLayout(new BorderLayout());
-		this.add(new MenuBarPanel(),BorderLayout.WEST);
+		this.add(new MenuBarPanel(), BorderLayout.WEST);
 	}
 
 	class mainFrameWindowListener implements WindowListener {

@@ -3,6 +3,8 @@
  */
 package salary.managment.system.view;
 
+import com.sun.org.glassfish.external.statistics.Statistic;
+
 /**
  * @author Tortoise
  *
@@ -42,6 +44,10 @@ public class PathManager {
 	public final static String NAME_ABOUT_ENABLE = "icon_about_enable.png";
 	// 关于disable图标名称
 	public final static String NAME_ABOUT_DISABLE = "icon_about_disable.png";
+	// 二级菜单按钮enable图标名称
+	public final static String NAME_SUB_MENU_ENABLE = "icon_sub_menu_disable.png";
+	// 二级菜单按钮disable图标名称
+	public final static String NAME_SUB_MENU_DISABLE = "icon_sub_menu_enable.png";
 	// 系统主目录
 	public final static String PATH_SYSTEM = System.getProperty("user.dir") + "\\";
 	// 配置文件路径
@@ -92,8 +98,15 @@ public class PathManager {
 	// 关于enable图标路径
 	public final static String PATH_ABOUT_ENABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON + NAME_ABOUT_ENABLE;
 	// 关于disable图标路径
-	
-	public final static String PATH_ABOUT_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON + NAME_ABOUT_DISABLE;
+	public final static String PATH_ABOUT_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_ABOUT_DISABLE;
+	// 二级菜单按钮enable图标路径
+	public final static String PATH_SUB_MENU_ENABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_SUB_MENU_ENABLE;
+	// 二级菜单按钮disable图标路径
+	public final static String PATH_SUB_MENU_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_SUB_MENU_DISABLE;
+
 	/**
 	 * 
 	 */

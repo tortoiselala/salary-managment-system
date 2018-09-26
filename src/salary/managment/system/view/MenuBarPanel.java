@@ -144,6 +144,56 @@ public class MenuBarPanel extends JPanel {
 	private void addListener() {
 		buttonInputAndModification.addActionListener(e -> {
 			buttonInputAndModification.setIcon(iconInputAndModificationEnable);
+			buttonComputeAndPrintSalary.setIcon(iconComputeAndPrintSalaryDisable);
+			buttonInquirySalary.setIcon(iconInquirySalaryDisable);
+			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
+			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
+			buttonAbout.setIcon(iconAboutDisable);
+		});
+
+		buttonComputeAndPrintSalary.addActionListener(e -> {
+			buttonInputAndModification.setIcon(iconInputAndModificationDisable);
+			buttonComputeAndPrintSalary.setIcon(iconComputeAndPrintSalaryEnable);
+			buttonInquirySalary.setIcon(iconInquirySalaryDisable);
+			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
+			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
+			buttonAbout.setIcon(iconAboutDisable);
+		});
+
+		buttonInquirySalary.addActionListener(e -> {
+			buttonInputAndModification.setIcon(iconInputAndModificationDisable);
+			buttonComputeAndPrintSalary.setIcon(iconComputeAndPrintSalaryDisable);
+			buttonInquirySalary.setIcon(iconInquirySalaryEnable);
+			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
+			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
+			buttonAbout.setIcon(iconAboutDisable);
+		});
+
+		buttonSystemMaintenance.addActionListener(e -> {
+			buttonInputAndModification.setIcon(iconInputAndModificationDisable);
+			buttonComputeAndPrintSalary.setIcon(iconComputeAndPrintSalaryDisable);
+			buttonInquirySalary.setIcon(iconInquirySalaryDisable);
+			buttonSystemMaintenance.setIcon(iconSystemMaintenanceEnable);
+			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
+			buttonAbout.setIcon(iconAboutDisable);
+		});
+
+		buttonSystemSettings.addActionListener(e -> {
+			buttonInputAndModification.setIcon(iconInputAndModificationDisable);
+			buttonComputeAndPrintSalary.setIcon(iconComputeAndPrintSalaryDisable);
+			buttonInquirySalary.setIcon(iconInquirySalaryDisable);
+			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
+			buttonSystemSettings.setIcon(iconSystemSettingsEnable);
+			buttonAbout.setIcon(iconAboutDisable);
+		});
+
+		buttonAbout.addActionListener(e -> {
+			buttonInputAndModification.setIcon(iconInputAndModificationDisable);
+			buttonComputeAndPrintSalary.setIcon(iconComputeAndPrintSalaryDisable);
+			buttonInquirySalary.setIcon(iconInquirySalaryDisable);
+			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
+			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
+			buttonAbout.setIcon(iconAboutEnable);
 		});
 
 	}

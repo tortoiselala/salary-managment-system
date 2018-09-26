@@ -16,6 +16,10 @@ import java.util.Properties;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
+import com.sun.org.glassfish.external.statistics.Statistic;
+
 /**
  * @author Tortoise
  *
@@ -68,6 +72,10 @@ public class AppConstantsField {
 	public final static String KEY_TIP_SYSTEM_MAINTENANCE = "tip_system_maintenance";
 	public final static String KEY_TIP_SYSTEM_SETTINGS = "tip_system_settings";
 	public final static String KEY_TIP_ABOUT = "tip_about";
+
+	public final static String KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION = "tip_input_employee_base_information";
+	public final static String KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION = "tip_modify_employee_base_information";
+	public final static String KEY_TIP_INPUT_OTHER_FEE = "tip_input_other_fee";
 	// 软件名称
 	public final static String APP_NAME = "Salary Manager";
 
@@ -107,10 +115,12 @@ public class AppConstantsField {
 	// 主窗口默认位置：主窗口默认纵向坐标
 	public final static int MAIN_WINDOW_Y_POSITION = SCREEN_HEIGHT / 2 - MAIN_WINDOW_HEIGHT / 2;
 	// 主窗口菜单栏默认大小：宽度
-	public final static int MAIN_WINDOW_MENUBAR_WIDTH = 80;
+	public final static int MAIN_WINDOW_MENUBAR_WIDTH = 60;
 	// 主窗口菜单栏默认大小：高度
 	public final static int MAIN_WINDOW_MENUBAR_HEIGHT = MAIN_WINDOW_HEIGHT;
-
+	
+	//二级菜单背景色
+	public final static Color SUB_MENU_BACK_COLOR = Color.BLACK;
 	public AppConstantsField() {
 
 	}
@@ -133,6 +143,10 @@ public class AppConstantsField {
 		properties_EN_US.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "system maintenance");
 		properties_EN_US.setProperty(KEY_TIP_SYSTEM_SETTINGS, "system settings");
 		properties_EN_US.setProperty(KEY_TIP_ABOUT, "about");
+		
+		properties_EN_US.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "input employee base information");
+		properties_EN_US.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "modify employee base information");
+		properties_EN_US.setProperty(KEY_TIP_INPUT_OTHER_FEE, "input other fee");
 		properties_EN_US.store(new FileOutputStream(PathManager.PATH_MAIN_EN_US_PROPERTIES),
 				"interface language properties:en_US");
 
@@ -152,6 +166,11 @@ public class AppConstantsField {
 		properties_ZH_CN.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "系统维护");
 		properties_ZH_CN.setProperty(KEY_TIP_SYSTEM_SETTINGS, "系统设置");
 		properties_ZH_CN.setProperty(KEY_TIP_ABOUT, "关于");
+		
+
+		properties_ZH_CN.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "员工基本信息录入");
+		properties_ZH_CN.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "修改员工基本信息");
+		properties_ZH_CN.setProperty(KEY_TIP_INPUT_OTHER_FEE, "奖金或扣款录入");
 		properties_ZH_CN.store(new FileOutputStream(PathManager.PATH_MAIN_ZH_CN_PROPERTIES),
 				"interface language properties:zh_CN");
 
