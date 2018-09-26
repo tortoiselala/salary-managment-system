@@ -10,15 +10,19 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
+
+import salary.managment.system.tools.ImageTool;
 
 /**
  * @author Tortoise
@@ -29,35 +33,62 @@ public class MenuBarPanel extends JPanel {
 	private static MenuButton buttonInputAndModification;
 	// 输入与修改按钮tip
 	private String tipInputAndModification;
+	// 输入与修改按钮enable icon
+	private ImageIcon iconInputAndModificationEnable;
+	// 输入与修改按钮disable icon
+	private ImageIcon iconInputAndModificationDisable;
 	// 计算打印工资
 	private static MenuButton buttonComputeAndPrintSalary;
 	// 计算打印工资tip
 	private String tipComputeAndPrintSalary;
+	// 计算打印工资按钮enable icon
+	private ImageIcon iconComputeAndPrintSalaryEnable;
+	// 计算打印工资按钮disable icon
+	private ImageIcon iconComputeAndPrintSalaryDisable;
 	// 查询工资
 	private static MenuButton buttonInquirySalary;
 	// 查询工资tip
 	private String tipInquirySalary;
+	// 查询工资按钮enable icon
+	private ImageIcon iconInquirySalaryEnable;
+	// 查询工资按钮disable icon
+	private ImageIcon iconInquirySalaryDisable;
 	// 系统维护
 	private static MenuButton buttonSystemMaintenance;
 	// 系统维护tip
 	private String tipSystemMaintenance;
+	// 系统维护按钮enable icon
+	private ImageIcon iconSystemMaintenanceEnable;
+	// 系统维护按钮disable icon
+	private ImageIcon iconSystemMaintenanceDisable;
 	// 系统设置
 	private static MenuButton buttonSystemSettings;
 	// 系统设置tip
 	private String tipSystemSettings;
+	// 系统设置按钮enable icon
+	private ImageIcon iconSystemSettingsEnable;
+	// 系统设置按钮disable icon
+	private ImageIcon iconSystemSettingsDisable;
 	// 关于
 	private static MenuButton buttonAbout;
 	// 关于tip
 	private String tipAbout;
+	// 关于按钮enable icon
+	private ImageIcon iconAboutEnable;
+	// 关于按钮disable icon
+	private ImageIcon iconAboutDisable;
 
 	public MenuBarPanel() throws FileNotFoundException, IOException {
 		getButtonTip();
+		getButtonIcon();
 		initialize();
 		addButton();
+		addListener();
 	}
 
 	private void initialize() {
-		Dimension preferredSize = new Dimension(48, AppConstantsField.LOGIN_WINDOW_HEIGHT);
+		Dimension preferredSize = new Dimension(AppConstantsField.MAIN_WINDOW_MENUBAR_WIDTH,
+				AppConstantsField.MAIN_WINDOW_MENUBAR_HEIGHT);
 		this.setPreferredSize(preferredSize);
 		this.setMaximumSize(preferredSize);
 		this.setMinimumSize(preferredSize);
@@ -66,31 +97,77 @@ public class MenuBarPanel extends JPanel {
 		this.setVisible(true);
 	}
 
+	public void getButtonIcon() {
+
+		// 输入与修改按钮enable icon
+		iconInputAndModificationEnable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_MAIN_INPUT_MODIFICATION_ENABLE));
+		// 输入与修改按钮disable icon
+		iconInputAndModificationDisable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_MAIN_INPUT_MODIFICATION_DISABLE));
+
+		// 计算打印工资按钮enable icon
+		iconComputeAndPrintSalaryEnable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_COMPUTE_PRINT_ENABLE));
+
+		// 计算打印工资按钮disable icon
+		iconComputeAndPrintSalaryDisable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_COMPUTE_PRINT_DISABLE));
+
+		// 查询工资按钮enable icon
+		iconInquirySalaryEnable = ImageTool.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_INQUIRY_ENABLE));
+
+		// 查询工资按钮disable icon
+		iconInquirySalaryDisable = ImageTool.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_INQUIRY_DISABLE));
+
+		// 系统维护按钮enable icon
+		iconSystemMaintenanceEnable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_SYSTEM_MAINTENANCE_ENABLE));
+		// 系统维护按钮disable icon
+		iconSystemMaintenanceDisable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_SYSTEM_MAINTENANCE_DISABLE));
+
+		// 系统设置按钮enable icon
+		iconSystemSettingsEnable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_SYSTEM_SETTINGS_ENABLE));
+
+		// 系统设置按钮disable icon
+		iconSystemSettingsDisable = ImageTool
+				.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_SYSTEM_SETTINGS_DISABLE));
+
+		// 关于按钮enable icon
+		iconAboutEnable = ImageTool.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_ABOUT_ENABLE));
+		// 关于按钮disable icon
+		iconAboutDisable = ImageTool.getMenuImageScaleDefault(new ImageIcon(PathManager.PATH_ABOUT_DISABLE));
+	}
+
+	private void addListener() {
+		buttonInputAndModification.addActionListener(e -> {
+			buttonInputAndModification.setIcon(iconInputAndModificationEnable);
+		});
+
+	}
+
 	private void addButton() {
 		JPanel panelUp = new JPanel();
+		panelUp.setSize(new Dimension(AppConstantsField.MAIN_WINDOW_MENUBAR_WIDTH / 2,
+				AppConstantsField.MAIN_WINDOW_MENUBAR_HEIGHT / 2));
 		panelUp.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
-		panelUp.setLayout(new FlowLayout(-2, -2, -4));
+		panelUp.setLayout(new FlowLayout());
 		JPanel panelDown = new JPanel();
 		panelDown.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 		panelDown.setLayout(new BorderLayout(0, 0));
-
-		buttonInputAndModification = new MenuButton(new ImageIcon(PathManager.PATH_MAIN_INPUT_MODIFICATION_DISABLE),
-				new ImageIcon(PathManager.PATH_MAIN_INPUT_MODIFICATION_ENABLE),
-				new ImageIcon(PathManager.PATH_MAIN_INPUT_MODIFICATION_DISABLE), tipInputAndModification);
-		buttonComputeAndPrintSalary = new MenuButton(new ImageIcon(PathManager.NAME_COMPUTE_PRINT_DISABLE),
-				new ImageIcon(PathManager.NAME_COMPUTE_PRINT_ENABLE),
-				new ImageIcon(PathManager.NAME_COMPUTE_PRINT_DISABLE), tipComputeAndPrintSalary);
-		buttonInquirySalary = new MenuButton(new ImageIcon(PathManager.NAME_INQUIRY_DISABLE),
-				new ImageIcon(PathManager.NAME_INQUIRY_ENABLE), new ImageIcon(PathManager.NAME_INQUIRY_DISABLE),
-				tipComputeAndPrintSalary);
-		buttonSystemMaintenance = new MenuButton(new ImageIcon(PathManager.NAME_SYSTEM_MAINTENANCE_DISABLE),
-				new ImageIcon(PathManager.NAME_SYSTEM_MAINTENANCE_ENABLE),
-				new ImageIcon(PathManager.NAME_SYSTEM_MAINTENANCE_DISABLE), tipSystemMaintenance);
-		buttonSystemSettings = new MenuButton(new ImageIcon(PathManager.NAME_SYSTEM_SETTINGS_DISABLE),
-				new ImageIcon(PathManager.NAME_SYSTEM_SETTINGS_ENABLE),
-				new ImageIcon(PathManager.NAME_SYSTEM_SETTINGS_DISABLE), tipSystemMaintenance);
-		buttonAbout = new MenuButton(new ImageIcon(PathManager.NAME_ABOUT_DISABLE),
-				new ImageIcon(PathManager.NAME_ABOUT_ENABLE), new ImageIcon(PathManager.NAME_ABOUT_DISABLE), tipAbout);
+		buttonInputAndModification = new MenuButton(iconInputAndModificationDisable, iconInputAndModificationEnable,
+				iconInputAndModificationDisable, tipInputAndModification);
+		buttonComputeAndPrintSalary = new MenuButton(iconComputeAndPrintSalaryDisable, iconComputeAndPrintSalaryEnable,
+				iconComputeAndPrintSalaryDisable, tipComputeAndPrintSalary);
+		buttonInquirySalary = new MenuButton(iconInquirySalaryDisable, iconInquirySalaryEnable,
+				iconInquirySalaryDisable, tipComputeAndPrintSalary);
+		buttonSystemMaintenance = new MenuButton(iconSystemMaintenanceDisable, iconSystemMaintenanceEnable,
+				iconSystemMaintenanceDisable, tipSystemMaintenance);
+		buttonSystemSettings = new MenuButton(iconSystemSettingsDisable, iconSystemSettingsEnable,
+				iconSystemSettingsDisable, tipSystemSettings);
+		buttonAbout = new MenuButton(iconAboutDisable, iconAboutEnable, iconAboutDisable, tipAbout);
 
 		panelUp.add(buttonInputAndModification);
 		panelUp.add(buttonComputeAndPrintSalary);

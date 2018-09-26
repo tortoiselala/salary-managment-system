@@ -106,6 +106,10 @@ public class AppConstantsField {
 	public final static int MAIN_WINDOW_X_POSITION = SCREEN_WIDTH / 2 - MAIN_WINDOW_WIDTH / 2;
 	// 主窗口默认位置：主窗口默认纵向坐标
 	public final static int MAIN_WINDOW_Y_POSITION = SCREEN_HEIGHT / 2 - MAIN_WINDOW_HEIGHT / 2;
+	// 主窗口菜单栏默认大小：宽度
+	public final static int MAIN_WINDOW_MENUBAR_WIDTH = 80;
+	// 主窗口菜单栏默认大小：高度
+	public final static int MAIN_WINDOW_MENUBAR_HEIGHT = MAIN_WINDOW_HEIGHT;
 
 	public AppConstantsField() {
 
@@ -125,10 +129,10 @@ public class AppConstantsField {
 		properties_EN_US.setProperty(KEY_ERROR, "error");
 		properties_EN_US.setProperty(KEY_TIP_INPUT_AND_MODIFICATION, "input and modification");
 		properties_EN_US.setProperty(KEY_TIP_COMPUTE_AND_PRINT_SALARY, "compute and print salary");
-		properties_EN_US.setProperty(KEY_TIP_INQUIRY_SALARY, "tip inquiry salary");
-		properties_EN_US.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "tip system maintenance");
-		properties_EN_US.setProperty(KEY_TIP_SYSTEM_SETTINGS, "tip system settings");
-		properties_EN_US.setProperty(KEY_TIP_ABOUT, "tip about");
+		properties_EN_US.setProperty(KEY_TIP_INQUIRY_SALARY, "inquiry salary");
+		properties_EN_US.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "system maintenance");
+		properties_EN_US.setProperty(KEY_TIP_SYSTEM_SETTINGS, "system settings");
+		properties_EN_US.setProperty(KEY_TIP_ABOUT, "about");
 		properties_EN_US.store(new FileOutputStream(PathManager.PATH_MAIN_EN_US_PROPERTIES),
 				"interface language properties:en_US");
 
@@ -142,12 +146,12 @@ public class AppConstantsField {
 		properties_ZH_CN.setProperty(KEY_LOGIN_SUCCESSFUL, "登录成功");
 		properties_ZH_CN.setProperty(KEY_USERNAME_OR_PASSWORD_UNCORRECT, "密码或账号不正确");
 		properties_ZH_CN.setProperty(KEY_ERROR, "错误");
-		properties_EN_US.setProperty(KEY_TIP_INPUT_AND_MODIFICATION, "输入与修改");
-		properties_EN_US.setProperty(KEY_TIP_COMPUTE_AND_PRINT_SALARY, "计算打印工资");
-		properties_EN_US.setProperty(KEY_TIP_INQUIRY_SALARY, "查询工资");
-		properties_EN_US.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "系统维护");
-		properties_EN_US.setProperty(KEY_TIP_SYSTEM_SETTINGS, "系统设置");
-		properties_EN_US.setProperty(KEY_TIP_ABOUT, "关于");
+		properties_ZH_CN.setProperty(KEY_TIP_INPUT_AND_MODIFICATION, "输入与修改");
+		properties_ZH_CN.setProperty(KEY_TIP_COMPUTE_AND_PRINT_SALARY, "计算打印工资");
+		properties_ZH_CN.setProperty(KEY_TIP_INQUIRY_SALARY, "查询工资");
+		properties_ZH_CN.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "系统维护");
+		properties_ZH_CN.setProperty(KEY_TIP_SYSTEM_SETTINGS, "系统设置");
+		properties_ZH_CN.setProperty(KEY_TIP_ABOUT, "关于");
 		properties_ZH_CN.store(new FileOutputStream(PathManager.PATH_MAIN_ZH_CN_PROPERTIES),
 				"interface language properties:zh_CN");
 

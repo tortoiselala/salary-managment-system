@@ -65,7 +65,35 @@ public class PathManager {
 	// 输入与修改菜单normal图标路径
 	public final static String PATH_MAIN_INPUT_MODIFICATION_DISABLE = PATH_SYSTEM + PATH_ICON
 			+ NAME_INPUT_MODIFICATION_DISABLE;
-
+	// 计算打印工资菜单enable图标路径
+	public final static String PATH_COMPUTE_PRINT_ENABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_COMPUTE_PRINT_ENABLE;
+	// 计算打印工资菜单disable图标路径
+	public final static String PATH_COMPUTE_PRINT_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_COMPUTE_PRINT_DISABLE;
+	// 查询工资菜单enable图标路径
+	public final static String PATH_INQUIRY_ENABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_INQUIRY_ENABLE;
+	// 查询工资菜单disable图标路径
+	public final static String PATH_INQUIRY_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_INQUIRY_DISABLE;
+	// 系统维护enable图标路径
+	public final static String PATH_SYSTEM_MAINTENANCE_ENABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_SYSTEM_MAINTENANCE_ENABLE;
+	// 系统维护disable图标路径
+	public final static String PATH_SYSTEM_MAINTENANCE_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_SYSTEM_MAINTENANCE_DISABLE;
+	// 系统设置enable图标路径
+	public final static String PATH_SYSTEM_SETTINGS_ENABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_SYSTEM_SETTINGS_ENABLE;
+	// 系统设置disable图标路径
+	public final static String PATH_SYSTEM_SETTINGS_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON
+			+ NAME_SYSTEM_SETTINGS_DISABLE;
+	// 关于enable图标路径
+	public final static String PATH_ABOUT_ENABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON + NAME_ABOUT_ENABLE;
+	// 关于disable图标路径
+	
+	public final static String PATH_ABOUT_DISABLE = PathManager.PATH_SYSTEM + PathManager.PATH_ICON + NAME_ABOUT_DISABLE;
 	/**
 	 * 
 	 */
