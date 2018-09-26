@@ -94,7 +94,7 @@ public class MenuBarPanel extends JPanel {
 		this.setMinimumSize(preferredSize);
 		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 		this.setLayout(new GridLayout(2, 1));
-		this.setVisible(true);
+		//this.setVisible(true);
 	}
 
 	public void getButtonIcon() {
@@ -204,15 +204,13 @@ public class MenuBarPanel extends JPanel {
 				AppConstantsField.MAIN_WINDOW_MENUBAR_HEIGHT / 2));
 		panelUp.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 		panelUp.setLayout(new FlowLayout());
-		JPanel panelDown = new JPanel();
-		panelDown.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
-		panelDown.setLayout(new BorderLayout(0, 0));
+
 		buttonInputAndModification = new MenuButton(iconInputAndModificationDisable, iconInputAndModificationEnable,
 				iconInputAndModificationDisable, tipInputAndModification);
 		buttonComputeAndPrintSalary = new MenuButton(iconComputeAndPrintSalaryDisable, iconComputeAndPrintSalaryEnable,
 				iconComputeAndPrintSalaryDisable, tipComputeAndPrintSalary);
 		buttonInquirySalary = new MenuButton(iconInquirySalaryDisable, iconInquirySalaryEnable,
-				iconInquirySalaryDisable, tipComputeAndPrintSalary);
+				iconInquirySalaryDisable, tipInquirySalary);
 		buttonSystemMaintenance = new MenuButton(iconSystemMaintenanceDisable, iconSystemMaintenanceEnable,
 				iconSystemMaintenanceDisable, tipSystemMaintenance);
 		buttonSystemSettings = new MenuButton(iconSystemSettingsDisable, iconSystemSettingsEnable,
@@ -225,6 +223,9 @@ public class MenuBarPanel extends JPanel {
 		panelUp.add(buttonSystemMaintenance);
 		panelUp.add(buttonSystemSettings);
 
+		JPanel panelDown = new JPanel();
+		panelDown.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
+		panelDown.setLayout(new BorderLayout(0, 0));
 		panelDown.add(buttonAbout, BorderLayout.SOUTH);
 		this.add(panelUp);
 		this.add(panelDown);

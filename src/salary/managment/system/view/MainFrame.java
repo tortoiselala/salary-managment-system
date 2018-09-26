@@ -20,6 +20,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import com.sun.javafx.event.EventQueue;
 
 import javafx.scene.control.ToolBar;
+import salary.managment.system.view.panel.PanelComputeAndPrintSalary;
+import salary.managment.system.view.panel.PanelInputAndModification;
 import sun.applet.Main;
 
 /**
@@ -114,6 +116,9 @@ public class MainFrame extends JFrame {
 	public void setToolBar() throws FileNotFoundException, IOException {
 		this.setLayout(new BorderLayout());
 		this.add(new MenuBarPanel(), BorderLayout.WEST);
+		//this.add(new PanelInputAndModification());
+		this.add(new PanelComputeAndPrintSalary());
+		
 	}
 
 	class mainFrameWindowListener implements WindowListener {

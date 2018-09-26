@@ -12,24 +12,20 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import com.sun.org.glassfish.external.statistics.Statistic;
+
+import salary.managment.system.submenubar.SubMenuBarComputeAndPrintSalary;
 import salary.managment.system.submenubar.SubMenuBarInputModification;
 import salary.managment.system.view.AppConstantsField;
-import salary.managment.system.view.MainFrame;
-import salary.managment.system.view.MenuBarPanel;
 
 /**
  * @author Tortoise
  *
  */
-public class PanelInputAndModification extends JPanel {
+public class PanelComputeAndPrintSalary extends JPanel {
+	public static SubMenuBarComputeAndPrintSalary subMenuBarComputeAndPrintSalary;
 
-	public static SubMenuBarInputModification subMenuBarInputModification;
-
-	public static void main(String[] args) {
-
-	}
-
-	public PanelInputAndModification() throws FileNotFoundException, IOException {
+	public PanelComputeAndPrintSalary() throws FileNotFoundException, IOException {
 		Dimension preferredSize = new Dimension(AppConstantsField.MAIN_PANEL_WIDTH,
 				AppConstantsField.MAIN_PANEL_HEIGHT);
 		this.setPreferredSize(preferredSize);
@@ -41,8 +37,13 @@ public class PanelInputAndModification extends JPanel {
 	}
 
 	private void addSubMenuBar() throws FileNotFoundException, IOException {
-		subMenuBarInputModification = new SubMenuBarInputModification();
-		add(subMenuBarInputModification, BorderLayout.WEST);
+		subMenuBarComputeAndPrintSalary = new SubMenuBarComputeAndPrintSalary();
+		add(subMenuBarComputeAndPrintSalary, BorderLayout.WEST);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

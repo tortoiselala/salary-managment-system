@@ -76,6 +76,12 @@ public class AppConstantsField {
 	public final static String KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION = "tip_input_employee_base_information";
 	public final static String KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION = "tip_modify_employee_base_information";
 	public final static String KEY_TIP_INPUT_OTHER_FEE = "tip_input_other_fee";
+
+	public final static String KEY_TIP_PERSONAL_SALARY = "tip_personal_salary";
+	public final static String KEY_TIP_PAYROLL = "tip_payroll";
+	public final static String KEY_TIP_PAY_SCHEDULE = "tip_pay_schedule";
+	public final static String KEY_TIP_SALARY_SUMMARY = "tip_salary_summary";
+	public final static String KEY_TIP_SALARY_DISTRIBUTION = "tip_salary_distribution";
 	// 软件名称
 	public final static String APP_NAME = "Salary Manager";
 
@@ -118,9 +124,19 @@ public class AppConstantsField {
 	public final static int MAIN_WINDOW_MENUBAR_WIDTH = 60;
 	// 主窗口菜单栏默认大小：高度
 	public final static int MAIN_WINDOW_MENUBAR_HEIGHT = MAIN_WINDOW_HEIGHT;
-	
-	//二级菜单背景色
+
+	// 二级菜单背景色
 	public final static Color SUB_MENU_BACK_COLOR = Color.BLACK;
+	// 二级菜单大小：宽度
+	public final static int SUB_MENUBAR_WIDTH = MAIN_WINDOW_MENUBAR_WIDTH * 5;
+	// 二级菜单大小：高度
+	public final static int SUB_MENUBAR_HEIGHT = MAIN_WINDOW_MENUBAR_HEIGHT;
+
+	// 主窗口大小：宽度
+	public final static int MAIN_PANEL_WIDTH = MAIN_WINDOW_WIDTH - MAIN_WINDOW_MENUBAR_WIDTH;
+	// 主窗口大小：高度
+	public final static int MAIN_PANEL_HEIGHT = MAIN_WINDOW_HEIGHT - MAIN_WINDOW_MENUBAR_HEIGHT;
+
 	public AppConstantsField() {
 
 	}
@@ -143,10 +159,17 @@ public class AppConstantsField {
 		properties_EN_US.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "system maintenance");
 		properties_EN_US.setProperty(KEY_TIP_SYSTEM_SETTINGS, "system settings");
 		properties_EN_US.setProperty(KEY_TIP_ABOUT, "about");
-		
+
 		properties_EN_US.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "input employee base information");
 		properties_EN_US.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "modify employee base information");
 		properties_EN_US.setProperty(KEY_TIP_INPUT_OTHER_FEE, "input other fee");
+
+		properties_EN_US.setProperty(KEY_TIP_PERSONAL_SALARY, "personal salary");
+		properties_EN_US.setProperty(KEY_TIP_PAYROLL, "payroll");
+		properties_EN_US.setProperty(KEY_TIP_PAY_SCHEDULE, "pay schedule");
+		properties_EN_US.setProperty(KEY_TIP_SALARY_SUMMARY, "salary summary");
+		properties_EN_US.setProperty(KEY_TIP_SALARY_DISTRIBUTION, "salary distribution");
+
 		properties_EN_US.store(new FileOutputStream(PathManager.PATH_MAIN_EN_US_PROPERTIES),
 				"interface language properties:en_US");
 
@@ -166,11 +189,17 @@ public class AppConstantsField {
 		properties_ZH_CN.setProperty(KEY_TIP_SYSTEM_MAINTENANCE, "系统维护");
 		properties_ZH_CN.setProperty(KEY_TIP_SYSTEM_SETTINGS, "系统设置");
 		properties_ZH_CN.setProperty(KEY_TIP_ABOUT, "关于");
-		
 
 		properties_ZH_CN.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "员工基本信息录入");
 		properties_ZH_CN.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "修改员工基本信息");
 		properties_ZH_CN.setProperty(KEY_TIP_INPUT_OTHER_FEE, "奖金或扣款录入");
+
+		properties_ZH_CN.setProperty(KEY_TIP_PERSONAL_SALARY, "个人工资");
+		properties_ZH_CN.setProperty(KEY_TIP_PAYROLL, "工资条");
+		properties_ZH_CN.setProperty(KEY_TIP_PAY_SCHEDULE, "工资明细表");
+		properties_ZH_CN.setProperty(KEY_TIP_SALARY_SUMMARY, "工资汇总表");
+		properties_ZH_CN.setProperty(KEY_TIP_SALARY_DISTRIBUTION, "工资分配表");
+
 		properties_ZH_CN.store(new FileOutputStream(PathManager.PATH_MAIN_ZH_CN_PROPERTIES),
 				"interface language properties:zh_CN");
 
