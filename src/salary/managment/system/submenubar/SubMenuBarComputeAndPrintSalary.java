@@ -53,7 +53,6 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 	// 按钮disable图标
 	private ImageIcon buttonIconDisable;
 
-
 	public SubMenuBarComputeAndPrintSalary() throws FileNotFoundException, IOException {
 		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH,
 				AppConstantsField.SUB_MENUBAR_HEIGHT);
@@ -61,14 +60,15 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 		this.setMaximumSize(preferredSize);
 		this.setMinimumSize(preferredSize);
 		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
-		getButtonTip();
+		this.setLayout(new GridLayout(2, 1));
+		setButtonTip();
 		addButton();
 		addButtonListner();
-		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
-		this.setLayout(new GridLayout(2, 1));
-	}
 
-	private void getButtonTip() throws FileNotFoundException, IOException {
+	}
+	
+
+	private void setButtonTip() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
 		// 獲取系统语言
 		properties.load(new FileInputStream(PathManager.PATH_MAIN_SYSTEM_PROPERTIES));

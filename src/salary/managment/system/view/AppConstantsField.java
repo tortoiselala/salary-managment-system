@@ -82,6 +82,9 @@ public class AppConstantsField {
 	public final static String KEY_TIP_PAY_SCHEDULE = "tip_pay_schedule";
 	public final static String KEY_TIP_SALARY_SUMMARY = "tip_salary_summary";
 	public final static String KEY_TIP_SALARY_DISTRIBUTION = "tip_salary_distribution";
+
+	public final static String KEY_TIP_INQUIRT_SALARY_DETAILS = "tip_inquirt_salary_details";
+	public final static String KEY_TIP_SALARY_DEPARTMENT = "tip_salary_department";
 	// 软件名称
 	public final static String APP_NAME = "Salary Manager";
 
@@ -170,6 +173,9 @@ public class AppConstantsField {
 		properties_EN_US.setProperty(KEY_TIP_SALARY_SUMMARY, "salary summary");
 		properties_EN_US.setProperty(KEY_TIP_SALARY_DISTRIBUTION, "salary distribution");
 
+		properties_EN_US.setProperty(KEY_TIP_INQUIRT_SALARY_DETAILS, "inquiry salary details");
+		properties_EN_US.setProperty(KEY_TIP_SALARY_DEPARTMENT, "salary deparment");
+
 		properties_EN_US.store(new FileOutputStream(PathManager.PATH_MAIN_EN_US_PROPERTIES),
 				"interface language properties:en_US");
 
@@ -199,6 +205,9 @@ public class AppConstantsField {
 		properties_ZH_CN.setProperty(KEY_TIP_PAY_SCHEDULE, "工资明细表");
 		properties_ZH_CN.setProperty(KEY_TIP_SALARY_SUMMARY, "工资汇总表");
 		properties_ZH_CN.setProperty(KEY_TIP_SALARY_DISTRIBUTION, "工资分配表");
+
+		properties_ZH_CN.setProperty(KEY_TIP_INQUIRT_SALARY_DETAILS, "查询工资明细");
+		properties_ZH_CN.setProperty(KEY_TIP_SALARY_DEPARTMENT, "查询部门工资");
 
 		properties_ZH_CN.store(new FileOutputStream(PathManager.PATH_MAIN_ZH_CN_PROPERTIES),
 				"interface language properties:zh_CN");

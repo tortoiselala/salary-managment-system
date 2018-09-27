@@ -62,7 +62,7 @@ public class SubMenuBarInputModification extends JPanel {
 		this.setMaximumSize(preferredSize);
 		this.setMinimumSize(preferredSize);
 		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
-		getButtonTip();
+		setButtonTip();
 		addButton();
 		addButtonListener();
 		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
@@ -117,7 +117,7 @@ public class SubMenuBarInputModification extends JPanel {
 		});
 	}
 
-	private void getButtonTip() throws FileNotFoundException, IOException {
+	private void setButtonTip() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
 		// 獲取系统语言
 		properties.load(new FileInputStream(PathManager.PATH_MAIN_SYSTEM_PROPERTIES));

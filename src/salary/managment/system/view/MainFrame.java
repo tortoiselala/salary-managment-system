@@ -24,6 +24,7 @@ import com.sun.javafx.event.EventQueue;
 import javafx.scene.control.ToolBar;
 import salary.managment.system.view.panel.PanelComputeAndPrintSalary;
 import salary.managment.system.view.panel.PanelInputAndModification;
+import salary.managment.system.view.panel.PanelInquirySalary;
 import sun.applet.Main;
 
 /**
@@ -120,16 +121,13 @@ public class MainFrame extends JFrame {
 		this.add(new MenuBarPanel(), BorderLayout.WEST);
 		panelInputAndModification = new PanelInputAndModification();
 		panelComputeAndPrintSalary = new PanelComputeAndPrintSalary();
-		
+		panelInauirySalary = new PanelInquirySalary();
+
 		panelMain = new JPanel();
 		panelMain.setLayout(new BorderLayout());
-		
-		panelMain.add(panelInputAndModification,BorderLayout.CENTER);
-//		panelInauirySalary;
-//		panelSystemMaintenance;
-//		panelSystemSettings;
-//		panelAbout;
-		this.add(this.panelMain,BorderLayout.CENTER);
+
+		panelMain.add(panelInputAndModification, BorderLayout.CENTER);
+		this.add(this.panelMain, BorderLayout.CENTER);
 
 	}
 

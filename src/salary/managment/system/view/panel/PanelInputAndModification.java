@@ -25,10 +25,6 @@ public class PanelInputAndModification extends JPanel {
 
 	public static SubMenuBarInputModification subMenuBarInputModification;
 
-	public static void main(String[] args) {
-
-	}
-
 	public PanelInputAndModification() throws FileNotFoundException, IOException {
 		Dimension preferredSize = new Dimension(AppConstantsField.MAIN_PANEL_WIDTH,
 				AppConstantsField.MAIN_PANEL_HEIGHT);
