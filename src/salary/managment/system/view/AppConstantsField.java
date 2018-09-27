@@ -169,8 +169,8 @@ public class AppConstantsField {
 		properties_EN_US.setProperty(KEY_TIP_SYSTEM_SETTINGS, "system settings");
 		properties_EN_US.setProperty(KEY_TIP_ABOUT, "about");
 
-		properties_EN_US.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "input employee base information");
-		properties_EN_US.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "modify employee base information");
+		properties_EN_US.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "input employee change information");
+		properties_EN_US.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "modify employee change information");
 		properties_EN_US.setProperty(KEY_TIP_INPUT_OTHER_FEE, "input other fee");
 
 		properties_EN_US.setProperty(KEY_TIP_PERSONAL_SALARY, "personal salary");
@@ -207,8 +207,8 @@ public class AppConstantsField {
 		properties_ZH_CN.setProperty(KEY_TIP_SYSTEM_SETTINGS, "系统设置");
 		properties_ZH_CN.setProperty(KEY_TIP_ABOUT, "关于");
 
-		properties_ZH_CN.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "员工基本信息录入");
-		properties_ZH_CN.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "修改员工基本信息");
+		properties_ZH_CN.setProperty(KEY_TIP_INPUT_EMPLOYEE_BASE_INFORMATION, "员工变动信息录入");
+		properties_ZH_CN.setProperty(KEY_TIP_MODIFY_EMPLOYEE_BASE_INFORMATION, "员工变动信息修改");
 		properties_ZH_CN.setProperty(KEY_TIP_INPUT_OTHER_FEE, "奖金或扣款录入");
 
 		properties_ZH_CN.setProperty(KEY_TIP_PERSONAL_SALARY, "个人工资");
