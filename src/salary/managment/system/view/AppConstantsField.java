@@ -85,6 +85,12 @@ public class AppConstantsField {
 
 	public final static String KEY_TIP_INQUIRT_SALARY_DETAILS = "tip_inquirt_salary_details";
 	public final static String KEY_TIP_SALARY_DEPARTMENT = "tip_salary_department";
+
+	public final static String KEY_TIP_DATABASE_BACKUP = "tip_database_backup";
+	public final static String KEY_TIP_ADD_EMPLOYEE_BASE_INFORMATION = "tip_add_employee_base_information";
+	public final static String KEY_TIP_DECREASE_EMPLOYEE_BASE_INFORMATION = "tip_decrease_employee_base_information";
+	public final static String KEY_TIP_UPDATE_EMPLOYEE_BASE_INFORMATION = "tip_update_employee_base_information";
+
 	// 软件名称
 	public final static String APP_NAME = "Salary Manager";
 
@@ -176,6 +182,11 @@ public class AppConstantsField {
 		properties_EN_US.setProperty(KEY_TIP_INQUIRT_SALARY_DETAILS, "inquiry salary details");
 		properties_EN_US.setProperty(KEY_TIP_SALARY_DEPARTMENT, "salary deparment");
 
+		properties_EN_US.setProperty(KEY_TIP_DATABASE_BACKUP, "database backup");
+		properties_EN_US.setProperty(KEY_TIP_ADD_EMPLOYEE_BASE_INFORMATION, "add employee base information");
+		properties_EN_US.setProperty(KEY_TIP_DECREASE_EMPLOYEE_BASE_INFORMATION, "decrease employee base information");
+		properties_EN_US.setProperty(KEY_TIP_UPDATE_EMPLOYEE_BASE_INFORMATION, "update employee base information");
+
 		properties_EN_US.store(new FileOutputStream(PathManager.PATH_MAIN_EN_US_PROPERTIES),
 				"interface language properties:en_US");
 
@@ -208,6 +219,11 @@ public class AppConstantsField {
 
 		properties_ZH_CN.setProperty(KEY_TIP_INQUIRT_SALARY_DETAILS, "查询工资明细");
 		properties_ZH_CN.setProperty(KEY_TIP_SALARY_DEPARTMENT, "查询部门工资");
+
+		properties_ZH_CN.setProperty(KEY_TIP_DATABASE_BACKUP, "数据库备份");
+		properties_ZH_CN.setProperty(KEY_TIP_ADD_EMPLOYEE_BASE_INFORMATION, "增加职工");
+		properties_ZH_CN.setProperty(KEY_TIP_DECREASE_EMPLOYEE_BASE_INFORMATION, "减少职工");
+		properties_ZH_CN.setProperty(KEY_TIP_UPDATE_EMPLOYEE_BASE_INFORMATION, "更新数据");
 
 		properties_ZH_CN.store(new FileOutputStream(PathManager.PATH_MAIN_ZH_CN_PROPERTIES),
 				"interface language properties:zh_CN");

@@ -22,9 +22,12 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.Be
 import com.sun.javafx.event.EventQueue;
 
 import javafx.scene.control.ToolBar;
+import salary.managment.system.view.panel.PanelAbout;
 import salary.managment.system.view.panel.PanelComputeAndPrintSalary;
 import salary.managment.system.view.panel.PanelInputAndModification;
 import salary.managment.system.view.panel.PanelInquirySalary;
+import salary.managment.system.view.panel.PanelSystemMaintenance;
+import salary.managment.system.view.panel.PanelSystemSettings;
 import sun.applet.Main;
 
 /**
@@ -122,13 +125,14 @@ public class MainFrame extends JFrame {
 		panelInputAndModification = new PanelInputAndModification();
 		panelComputeAndPrintSalary = new PanelComputeAndPrintSalary();
 		panelInauirySalary = new PanelInquirySalary();
-
+		panelSystemMaintenance = new PanelSystemMaintenance();
+		panelSystemSettings = new PanelSystemSettings();
+		panelAbout = new PanelAbout();
 		panelMain = new JPanel();
 		panelMain.setLayout(new BorderLayout());
 
 		panelMain.add(panelInputAndModification, BorderLayout.CENTER);
 		this.add(this.panelMain, BorderLayout.CENTER);
-
 	}
 
 	class mainFrameWindowListener implements WindowListener {

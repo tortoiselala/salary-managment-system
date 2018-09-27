@@ -191,7 +191,7 @@ public class MenuBarPanel extends JPanel {
 			buttonAbout.setIcon(iconAboutDisable);
 
 			MainFrame.panelMain.removeAll();
-			MainFrame.panelMain = MainFrame.panelSystemMaintenance;
+			MainFrame.panelMain.add(MainFrame.panelSystemMaintenance);
 			MainFrame.panelMain.updateUI();
 		});
 

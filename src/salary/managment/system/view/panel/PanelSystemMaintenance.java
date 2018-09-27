@@ -3,9 +3,18 @@
  */
 package salary.managment.system.view.panel;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.LayoutManager;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JPanel;
+
+import salary.managment.system.submenubar.SubMenuBarInquirySalary;
+import salary.managment.system.submenubar.SubMenuBarSystemMaintenance;
+import salary.managment.system.view.AppConstantsField;
 
 /**
  * @author Tortoise
@@ -13,41 +22,24 @@ import javax.swing.JPanel;
  */
 public class PanelSystemMaintenance extends JPanel {
 
-	/**
-	 * 
-	 */
-	public PanelSystemMaintenance() {
-		// TODO Auto-generated constructor stub
+	public static SubMenuBarSystemMaintenance subMenuBarSystemMaintenance;
+
+	public PanelSystemMaintenance() throws FileNotFoundException, IOException {
+		Dimension preferredSize = new Dimension(AppConstantsField.MAIN_PANEL_WIDTH,
+				AppConstantsField.MAIN_PANEL_HEIGHT);
+		this.setPreferredSize(preferredSize);
+		this.setMaximumSize(preferredSize);
+		this.setMinimumSize(preferredSize);
+		this.setBackground(Color.BLACK);
+		this.setLayout(new BorderLayout());
+		this.addSubMenuBar();
 	}
 
-	/**
-	 * @param layout
-	 */
-	public PanelSystemMaintenance(LayoutManager layout) {
-		super(layout);
-		// TODO Auto-generated constructor stub
+	private void addSubMenuBar() throws FileNotFoundException, IOException {
+		subMenuBarSystemMaintenance = new SubMenuBarSystemMaintenance();
+		add(subMenuBarSystemMaintenance, BorderLayout.WEST);
 	}
 
-	/**
-	 * @param isDoubleBuffered
-	 */
-	public PanelSystemMaintenance(boolean isDoubleBuffered) {
-		super(isDoubleBuffered);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param layout
-	 * @param isDoubleBuffered
-	 */
-	public PanelSystemMaintenance(LayoutManager layout, boolean isDoubleBuffered) {
-		super(layout, isDoubleBuffered);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

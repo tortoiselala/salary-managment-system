@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,7 +50,7 @@ public class SubMenuBarInquirySalary extends JPanel {
 		this.setMaximumSize(preferredSize);
 		this.setMinimumSize(preferredSize);
 		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
-
+		this.setLayout(new GridLayout(2, 1));
 		setButtonTip();
 		addButton();
 		addButtonListener();
