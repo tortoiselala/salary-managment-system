@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 import salary.managment.system.tools.ImageTool;
+import salary.managment.system.view.panel.PanelInputAndModification;
 
 /**
  * @author Tortoise
@@ -94,7 +95,7 @@ public class MenuBarPanel extends JPanel {
 		this.setMinimumSize(preferredSize);
 		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 		this.setLayout(new GridLayout(2, 1));
-		//this.setVisible(true);
+		// this.setVisible(true);
 	}
 
 	public void getButtonIcon() {
@@ -149,6 +150,10 @@ public class MenuBarPanel extends JPanel {
 			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
 			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
 			buttonAbout.setIcon(iconAboutDisable);
+
+			MainFrame.panelMain.removeAll();
+			MainFrame.panelMain.add(MainFrame.panelInputAndModification, BorderLayout.CENTER);
+			MainFrame.panelMain.updateUI();
 		});
 
 		buttonComputeAndPrintSalary.addActionListener(e -> {
@@ -158,6 +163,10 @@ public class MenuBarPanel extends JPanel {
 			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
 			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
 			buttonAbout.setIcon(iconAboutDisable);
+
+			MainFrame.panelMain.removeAll();
+			MainFrame.panelMain.add(MainFrame.panelComputeAndPrintSalary, BorderLayout.CENTER);
+			MainFrame.panelMain.updateUI();
 		});
 
 		buttonInquirySalary.addActionListener(e -> {
@@ -167,6 +176,10 @@ public class MenuBarPanel extends JPanel {
 			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
 			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
 			buttonAbout.setIcon(iconAboutDisable);
+
+			MainFrame.panelMain.removeAll();
+			MainFrame.panelMain.add(MainFrame.panelInauirySalary);
+			MainFrame.panelMain.updateUI();
 		});
 
 		buttonSystemMaintenance.addActionListener(e -> {
@@ -176,6 +189,10 @@ public class MenuBarPanel extends JPanel {
 			buttonSystemMaintenance.setIcon(iconSystemMaintenanceEnable);
 			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
 			buttonAbout.setIcon(iconAboutDisable);
+
+			MainFrame.panelMain.removeAll();
+			MainFrame.panelMain = MainFrame.panelSystemMaintenance;
+			MainFrame.panelMain.updateUI();
 		});
 
 		buttonSystemSettings.addActionListener(e -> {
@@ -185,6 +202,10 @@ public class MenuBarPanel extends JPanel {
 			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
 			buttonSystemSettings.setIcon(iconSystemSettingsEnable);
 			buttonAbout.setIcon(iconAboutDisable);
+
+			MainFrame.panelMain.removeAll();
+			MainFrame.panelMain.add(MainFrame.panelSystemSettings, BorderLayout.CENTER);
+			MainFrame.panelMain.updateUI();
 		});
 
 		buttonAbout.addActionListener(e -> {
@@ -194,6 +215,10 @@ public class MenuBarPanel extends JPanel {
 			buttonSystemMaintenance.setIcon(iconSystemMaintenanceDisable);
 			buttonSystemSettings.setIcon(iconSystemSettingsDisable);
 			buttonAbout.setIcon(iconAboutEnable);
+
+			MainFrame.panelMain.removeAll();
+			MainFrame.panelMain.add(MainFrame.panelAbout, BorderLayout.CENTER);
+			MainFrame.panelMain.updateUI();
 		});
 
 	}

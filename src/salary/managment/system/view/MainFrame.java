@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.BeanWriterProcessor;
+
 import com.sun.javafx.event.EventQueue;
 
 import javafx.scene.control.ToolBar;
@@ -116,9 +118,19 @@ public class MainFrame extends JFrame {
 	public void setToolBar() throws FileNotFoundException, IOException {
 		this.setLayout(new BorderLayout());
 		this.add(new MenuBarPanel(), BorderLayout.WEST);
-		//this.add(new PanelInputAndModification());
-		this.add(new PanelComputeAndPrintSalary());
+		panelInputAndModification = new PanelInputAndModification();
+		panelComputeAndPrintSalary = new PanelComputeAndPrintSalary();
 		
+		panelMain = new JPanel();
+		panelMain.setLayout(new BorderLayout());
+		
+		panelMain.add(panelInputAndModification,BorderLayout.CENTER);
+//		panelInauirySalary;
+//		panelSystemMaintenance;
+//		panelSystemSettings;
+//		panelAbout;
+		this.add(this.panelMain,BorderLayout.CENTER);
+
 	}
 
 	class mainFrameWindowListener implements WindowListener {
