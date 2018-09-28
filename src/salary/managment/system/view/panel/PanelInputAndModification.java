@@ -16,6 +16,7 @@ import salary.managment.system.submenubar.SubMenuBarInputModification;
 import salary.managment.system.view.AppConstantsField;
 import salary.managment.system.view.MainFrame;
 import salary.managment.system.view.MenuBarPanel;
+import salary.managment.system.view.panel.func.PanelFuncModifyEmployeeBasicInformation;
 
 /**
  * @author Tortoise
@@ -24,6 +25,7 @@ import salary.managment.system.view.MenuBarPanel;
 public class PanelInputAndModification extends JPanel {
 
 	public static SubMenuBarInputModification subMenuBarInputModification;
+	public static PanelFuncModifyEmployeeBasicInformation panelFuncModifyEmployeeBasicInformation;
 
 	public PanelInputAndModification() throws FileNotFoundException, IOException {
 		Dimension preferredSize = new Dimension(AppConstantsField.MAIN_PANEL_WIDTH,
@@ -38,7 +40,10 @@ public class PanelInputAndModification extends JPanel {
 
 	private void addSubMenuBar() throws FileNotFoundException, IOException {
 		subMenuBarInputModification = new SubMenuBarInputModification();
-		add(subMenuBarInputModification, BorderLayout.WEST);
+		panelFuncModifyEmployeeBasicInformation = new PanelFuncModifyEmployeeBasicInformation();
+		//add(subMenuBarInputModification, BorderLayout.WEST);
+		add(panelFuncModifyEmployeeBasicInformation, BorderLayout.CENTER);
+
 	}
 
 }

@@ -84,9 +84,9 @@ public class SubMenuBarInputModification extends JPanel {
 		buttonModifyEmployeeBaseInformation.setText(tipModifyEmployeeBaseInformation);
 		buttonInputOtherFee = new MenuButton(buttonIconDisable, buttonIconEnable, buttonIconDisable, tipInputOtherFee);
 		buttonInputOtherFee.setText(tipInputOtherFee);
-		panelUp.add(buttonInputEmployeeBaseInformation);
-		panelUp.add(buttonModifyEmployeeBaseInformation);
-		panelUp.add(buttonInputOtherFee);
+		//panelUp.add(buttonInputEmployeeBaseInformation);
+		//panelUp.add(buttonModifyEmployeeBaseInformation);
+		//panelUp.add(buttonInputOtherFee);
 		panelUp.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 
 		JPanel panelDown = new JPanel();

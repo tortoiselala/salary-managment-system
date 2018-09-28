@@ -5,6 +5,9 @@ package salary.managment.system.base;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+
+import sun.reflect.generics.tree.ReturnType;
 
 /**
  * @author Tortoise
@@ -100,11 +103,29 @@ public final class DatabaseFiled {
 	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY}存储员工基本信息表的第五列名称，
 	 * 员工基本薪资
 	 */
-	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY = "baseSalary";
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY = "base_salary";
 	/**
 	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY}存储员工基本信息表的第六列名称，员工类别
 	 */
 	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY = "category";
+
+	/**
+	 * {@code DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_DEPARTMENT_ID}存储员工每月工资信息表的名称，
+	 * 部门id
+	 */
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_DEPARTMENT_ID = "department_id";
+
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_EMPLOYEE_NAME = "employee_name";
+
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SICK_FEE = "sick_fee";
+
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CHILD_CARE_FEE = "child_care_fee";
+
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_RENT_FEE = "rent_fee";
+
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_WATER_ELE_FEE = "water_ele_fee";
+
+	public static final String DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_OTHER_FEE = "other_fee";
 	/**
 	 * <ul>
 	 * <li>{@code DB_DATABASE_ROOT_NAME}数据库登录账号</li>
@@ -131,5 +152,20 @@ public final class DatabaseFiled {
 
 	public static String getDatabaseBaseInformationURL() throws FileNotFoundException, IOException {
 		return DB_URL_HEAD + "://" + get_DB_URL_IP() + ":" + get_DB_URL_PORT() + "/" + DB_DATABASE_BASE_INFORMATION;
+	}
+
+	public static boolean isIDIllegal(String ID) {
+		char[] IDToCharArray = ID.toCharArray();
+		int length = IDToCharArray.length;
+		for (int i = 0; i < length - 1; i++) {
+			if (!(IDToCharArray[i] >= '0' && IDToCharArray[i] <= '9')) {
+				return false;
+			}
+		}
+		if (!((IDToCharArray[length - 1] >= '0' && IDToCharArray[length - 1] <= '9') || IDToCharArray[length - 1] == 'x'
+				|| IDToCharArray[length - 1] == 'X')) {
+			return false;
+		}
+		return true;
 	}
 }

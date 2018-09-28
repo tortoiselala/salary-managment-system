@@ -54,7 +54,7 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 	private ImageIcon buttonIconDisable;
 
 	public SubMenuBarComputeAndPrintSalary() throws FileNotFoundException, IOException {
-		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH,
+		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH / 2,
 				AppConstantsField.SUB_MENUBAR_HEIGHT);
 		this.setPreferredSize(preferredSize);
 		this.setMaximumSize(preferredSize);
@@ -66,7 +66,6 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 		addButtonListner();
 
 	}
-	
 
 	private void setButtonTip() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
@@ -109,7 +108,7 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 		buttonSalaryDistribution = new MenuButton(buttonIconDisable, buttonIconEnable, buttonIconDisable,
 				tipSalaryDistribution);
 		buttonSalaryDistribution.setText(tipSalaryDistribution);
-		panelUp.add(buttonPersonalSalary);
+		//panelUp.add(buttonPersonalSalary);
 		panelUp.add(buttonPayroll);
 		panelUp.add(buttonPaySchedule);
 		panelUp.add(buttonSalarySummary);
@@ -132,6 +131,8 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 			buttonPaySchedule.setIcon(buttonIconDisable);
 			buttonSalarySummary.setIcon(buttonIconDisable);
 			buttonSalaryDistribution.setIcon(buttonIconDisable);
+			
+			
 		});
 		buttonPayroll.addActionListener(e -> {
 			buttonPersonalSalary.setIcon(buttonIconDisable);

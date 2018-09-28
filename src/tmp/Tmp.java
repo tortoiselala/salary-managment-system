@@ -4,17 +4,30 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 import java.util.Scanner;
 
+import salary.managment.system.base.DatabaseFiled;
 import salary.managment.system.view.PathManager;
 import sun.security.provider.VerificationProvider;
 
 public class Tmp {
 	public static void main(String[] args) {
-		Tmp tmp = new Tmp();
+		// Tmp tmp = new Tmp();
+		String sql = "ALTER TABLE " +" table_201809 " + " ADD ("
+				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SICK_FEE
+				+ " double(11,2) default 0,"
+				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CHILD_CARE_FEE
+				+ " double(11,2) default 0,"
+				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_RENT_FEE
+				+ " double(11,2) default 0,"
+				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_WATER_ELE_FEE
+				+ " double(11,2) default 0,"
+				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_OTHER_FEE
+				+ " double(11,2) default 0" + ")";
+		System.out.println(sql);
 	}
 
 	public Tmp() {
-		//en_us();
-		//zh_cn();
+		// en_us();
+		// zh_cn();
 		tip_loader();
 	}
 
@@ -64,7 +77,7 @@ public class Tmp {
 			System.out.println(");");
 		}
 	}
-	
+
 	public void tip_loader() {
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
@@ -82,6 +95,6 @@ public class Tmp {
 			}
 			System.out.println(");");
 		}
-		
+
 	}
 }

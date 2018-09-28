@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.sun.javafx.geom.AreaOp.AddOp;
 
 import java.sql.*;
 
@@ -24,7 +25,6 @@ public class InitDatabase {
 	 * 不允许初始化该类，使用静态方式init()来初始化数据库
 	 */
 	private InitDatabase() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -107,6 +107,7 @@ public class InitDatabase {
 						+ "`user_gener_create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "
 						+ "PRIMARY KEY (`user_gener_name`) )");
 			}
+
 			connection.close();
 
 			getConnection(DatabaseFiled.getDatabaseBaseInformationURL());
@@ -119,6 +120,25 @@ public class InitDatabase {
 						+ "`age` tinyint(3) unsigned DEFAULT '0', "
 						+ "`baseSalary` double(11,2) unsigned DEFAULT '0.00', "
 						+ "`category` varchar(22) DEFAULT 'general_staff', " + "PRIMARY KEY (`id`) )");
+			}
+
+			CurrentMonthEmployeeSalaryInformationManager currentMonthTable = new CurrentMonthEmployeeSalaryInformationManager();
+			resultSet = databaseMetaData.getTables(null, null, currentMonthTable.getTableName(), null);
+			if (!resultSet.next()) {
+				statement.executeUpdate("CREATE TABLE " + currentMonthTable.getTableName() + " select * from "
+						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM);
+				String sql = "ALTER TABLE " + " table_201809 " + " ADD ("
+						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SICK_FEE
+						+ " double(11,2) default 0,"
+						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CHILD_CARE_FEE
+						+ " double(11,2) default 0,"
+						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_RENT_FEE
+						+ " double(11,2) default 0,"
+						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_WATER_ELE_FEE
+						+ " double(11,2) default 0,"
+						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_OTHER_FEE
+						+ " double(11,2) default 0" + ")";
+				statement.executeUpdate(sql);
 			}
 			connection.close();
 		} catch (ClassNotFoundException e) {
