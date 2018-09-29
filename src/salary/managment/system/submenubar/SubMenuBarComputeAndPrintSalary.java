@@ -12,15 +12,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.KeyStore.PrivateKeyEntry;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import salary.managment.system.tools.ImageTool;
 import salary.managment.system.view.AppConstantsField;
 import salary.managment.system.view.MenuButton;
 import salary.managment.system.view.PathManager;
+import salary.managment.system.view.panel.PanelComputeAndPrintSalary;
+import salary.managment.system.view.panel.func.PanelFuncPayRoll;
+import salary.managment.system.view.panel.func.PanelFuncPaySchedule;
 
 /**
  * @author Tortoise
@@ -108,7 +113,7 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 		buttonSalaryDistribution = new MenuButton(buttonIconDisable, buttonIconEnable, buttonIconDisable,
 				tipSalaryDistribution);
 		buttonSalaryDistribution.setText(tipSalaryDistribution);
-		//panelUp.add(buttonPersonalSalary);
+		// panelUp.add(buttonPersonalSalary);
 		panelUp.add(buttonPayroll);
 		panelUp.add(buttonPaySchedule);
 		panelUp.add(buttonSalarySummary);
@@ -131,8 +136,7 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 			buttonPaySchedule.setIcon(buttonIconDisable);
 			buttonSalarySummary.setIcon(buttonIconDisable);
 			buttonSalaryDistribution.setIcon(buttonIconDisable);
-			
-			
+
 		});
 		buttonPayroll.addActionListener(e -> {
 			buttonPersonalSalary.setIcon(buttonIconDisable);
@@ -140,6 +144,16 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 			buttonPaySchedule.setIcon(buttonIconDisable);
 			buttonSalarySummary.setIcon(buttonIconDisable);
 			buttonSalaryDistribution.setIcon(buttonIconDisable);
+
+			PanelComputeAndPrintSalary.mainPanel.removeAll();
+			try {
+				PanelComputeAndPrintSalary.mainPanel.add(new PanelFuncPayRoll());
+			} catch (ClassNotFoundException | SQLException | IOException e1) {
+
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "错误", JOptionPane.OK_CANCEL_OPTION);
+			}
+
+			PanelComputeAndPrintSalary.mainPanel.updateUI();
 		});
 		buttonPaySchedule.addActionListener(e -> {
 			buttonPersonalSalary.setIcon(buttonIconDisable);
@@ -147,6 +161,16 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 			buttonPaySchedule.setIcon(buttonIconEnable);
 			buttonSalarySummary.setIcon(buttonIconDisable);
 			buttonSalaryDistribution.setIcon(buttonIconDisable);
+
+			PanelComputeAndPrintSalary.mainPanel.removeAll();
+			try {
+				PanelComputeAndPrintSalary.mainPanel.add(new PanelFuncPaySchedule());
+			} catch (ClassNotFoundException | SQLException | IOException e1) {
+
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "错误", JOptionPane.OK_CANCEL_OPTION);
+			}
+
+			PanelComputeAndPrintSalary.mainPanel.updateUI();
 		});
 		buttonSalarySummary.addActionListener(e -> {
 			buttonPersonalSalary.setIcon(buttonIconDisable);

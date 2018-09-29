@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 
@@ -17,6 +18,7 @@ import com.sun.org.glassfish.external.statistics.Statistic;
 import salary.managment.system.submenubar.SubMenuBarComputeAndPrintSalary;
 import salary.managment.system.submenubar.SubMenuBarInputModification;
 import salary.managment.system.view.AppConstantsField;
+import salary.managment.system.view.panel.func.PanelFuncPayRoll;
 
 /**
  * @author Tortoise
@@ -25,7 +27,10 @@ import salary.managment.system.view.AppConstantsField;
 public class PanelComputeAndPrintSalary extends JPanel {
 	public static SubMenuBarComputeAndPrintSalary subMenuBarComputeAndPrintSalary;
 
-	public PanelComputeAndPrintSalary() throws FileNotFoundException, IOException {
+	public static JPanel mainPanel;
+
+	public PanelComputeAndPrintSalary()
+			throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		Dimension preferredSize = new Dimension(AppConstantsField.MAIN_PANEL_WIDTH,
 				AppConstantsField.MAIN_PANEL_HEIGHT);
 		this.setPreferredSize(preferredSize);
@@ -36,9 +41,12 @@ public class PanelComputeAndPrintSalary extends JPanel {
 		this.addSubMenuBar();
 	}
 
-	private void addSubMenuBar() throws FileNotFoundException, IOException {
+	private void addSubMenuBar() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		subMenuBarComputeAndPrintSalary = new SubMenuBarComputeAndPrintSalary();
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new BorderLayout());
 		add(subMenuBarComputeAndPrintSalary, BorderLayout.WEST);
+		add(mainPanel, BorderLayout.CENTER);
 	}
 
 	public static void main(String[] args) {

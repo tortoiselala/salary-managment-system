@@ -10,6 +10,7 @@ import java.awt.event.WindowListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.swing.JFrame;
@@ -70,12 +71,12 @@ public class MainFrame extends JFrame {
 	public static JPanel panelAbout;
 
 	public MainFrame() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-			FileNotFoundException, UnsupportedLookAndFeelException, IOException {
+			FileNotFoundException, UnsupportedLookAndFeelException, IOException, SQLException {
 		initFrame();
 	}
 
 	public void initFrame() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-			UnsupportedLookAndFeelException, FileNotFoundException, IOException {
+			UnsupportedLookAndFeelException, FileNotFoundException, IOException, SQLException {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		setToolBar();
 
@@ -119,7 +120,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public void setToolBar() throws FileNotFoundException, IOException {
+	public void setToolBar() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		this.setLayout(new BorderLayout());
 		this.add(new MenuBarPanel(), BorderLayout.WEST);
 		panelInputAndModification = new PanelInputAndModification();
