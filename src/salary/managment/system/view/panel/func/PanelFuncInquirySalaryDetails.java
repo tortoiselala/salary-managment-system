@@ -112,6 +112,17 @@ public class PanelFuncInquirySalaryDetails extends JPanel {
 		int targetPanelWidth = screenSize.width / 2;
 		int targetPanelHeight = screenSize.height / 2;
 
+		labelEmployeeID.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelDepartmentID.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelEmployeeName.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelCategory.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelBaseSalary.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelSickFee.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelChildCareFee.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelRentFee.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelWaterElectricityFee.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+		labelOtherFee.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 100));
+
 		textFieldEmployeeID = new JTextField();
 		textFieldEmployeeID.setPreferredSize(new Dimension(targetPanelWidth * 3 / 10, 30));
 

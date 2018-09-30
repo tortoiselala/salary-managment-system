@@ -50,7 +50,7 @@ public class SubMenuBarSystemMaintenance extends JPanel {
 	private ImageIcon buttonIconDisable;
 
 	public SubMenuBarSystemMaintenance() throws FileNotFoundException, IOException {
-		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH,
+		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH/2,
 				AppConstantsField.SUB_MENUBAR_HEIGHT);
 		this.setPreferredSize(preferredSize);
 		this.setMaximumSize(preferredSize);

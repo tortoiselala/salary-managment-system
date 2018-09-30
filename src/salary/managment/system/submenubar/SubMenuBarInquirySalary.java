@@ -25,6 +25,7 @@ import salary.managment.system.view.MenuButton;
 import salary.managment.system.view.PathManager;
 import salary.managment.system.view.panel.PanelInquirySalary;
 import salary.managment.system.view.panel.func.PanelFuncInquirySalaryDetails;
+import salary.managment.system.view.panel.func.PanelFuncSalaryDepartment;
 
 /**
  * @author Tortoise
@@ -117,6 +118,10 @@ public class SubMenuBarInquirySalary extends JPanel {
 		buttonSalaryDepartment.addActionListener(e -> {
 			buttonInquirySalaryDetails.setIcon(buttonIconDisable);
 			buttonSalaryDepartment.setIcon(buttonIconEnable);
+
+			PanelInquirySalary.mainPanel.removeAll();
+			PanelInquirySalary.mainPanel.add(new PanelFuncSalaryDepartment());
+			PanelInquirySalary.mainPanel.updateUI();
 		});
 	}
 
