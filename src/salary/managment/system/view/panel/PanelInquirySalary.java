@@ -23,6 +23,7 @@ import salary.managment.system.view.AppConstantsField;
 public class PanelInquirySalary extends JPanel {
 
 	public static SubMenuBarInquirySalary subMenuBarInquirySalary;
+	public static JPanel mainPanel;
 
 	public PanelInquirySalary() throws FileNotFoundException, IOException {
 		Dimension preferredSize = new Dimension(AppConstantsField.MAIN_PANEL_WIDTH,
@@ -37,7 +38,9 @@ public class PanelInquirySalary extends JPanel {
 
 	private void addSubMenuBar() throws FileNotFoundException, IOException {
 		subMenuBarInquirySalary = new SubMenuBarInquirySalary();
+		mainPanel = new JPanel();
 		add(subMenuBarInquirySalary, BorderLayout.WEST);
+		add(mainPanel, BorderLayout.CENTER);
 	}
 
 	public static void main(String[] args) {

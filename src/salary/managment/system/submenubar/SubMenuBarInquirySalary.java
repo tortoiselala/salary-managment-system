@@ -23,6 +23,8 @@ import salary.managment.system.tools.ImageTool;
 import salary.managment.system.view.AppConstantsField;
 import salary.managment.system.view.MenuButton;
 import salary.managment.system.view.PathManager;
+import salary.managment.system.view.panel.PanelInquirySalary;
+import salary.managment.system.view.panel.func.PanelFuncInquirySalaryDetails;
 
 /**
  * @author Tortoise
@@ -44,7 +46,7 @@ public class SubMenuBarInquirySalary extends JPanel {
 	private ImageIcon buttonIconDisable;
 
 	public SubMenuBarInquirySalary() throws FileNotFoundException, IOException {
-		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH,
+		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH / 2,
 				AppConstantsField.SUB_MENUBAR_HEIGHT);
 		this.setPreferredSize(preferredSize);
 		this.setMaximumSize(preferredSize);
@@ -106,6 +108,10 @@ public class SubMenuBarInquirySalary extends JPanel {
 		buttonInquirySalaryDetails.addActionListener(e -> {
 			buttonInquirySalaryDetails.setIcon(buttonIconEnable);
 			buttonSalaryDepartment.setIcon(buttonIconDisable);
+
+			PanelInquirySalary.mainPanel.removeAll();
+			PanelInquirySalary.mainPanel.add(new PanelFuncInquirySalaryDetails());
+			PanelInquirySalary.mainPanel.updateUI();
 		});
 
 		buttonSalaryDepartment.addActionListener(e -> {

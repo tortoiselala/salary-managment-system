@@ -26,6 +26,7 @@ import salary.managment.system.view.PathManager;
 import salary.managment.system.view.panel.PanelComputeAndPrintSalary;
 import salary.managment.system.view.panel.func.PanelFuncPayRoll;
 import salary.managment.system.view.panel.func.PanelFuncPaySchedule;
+import salary.managment.system.view.panel.func.PanelFuncSalarySummary;
 
 /**
  * @author Tortoise
@@ -117,7 +118,7 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 		panelUp.add(buttonPayroll);
 		panelUp.add(buttonPaySchedule);
 		panelUp.add(buttonSalarySummary);
-		panelUp.add(buttonSalaryDistribution);
+		// panelUp.add(buttonSalaryDistribution);
 		panelUp.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 
 		JPanel panelDown = new JPanel();
@@ -178,6 +179,16 @@ public class SubMenuBarComputeAndPrintSalary extends JPanel {
 			buttonPaySchedule.setIcon(buttonIconDisable);
 			buttonSalarySummary.setIcon(buttonIconEnable);
 			buttonSalaryDistribution.setIcon(buttonIconDisable);
+
+			PanelComputeAndPrintSalary.mainPanel.removeAll();
+			try {
+				PanelComputeAndPrintSalary.mainPanel.add(new PanelFuncSalarySummary());
+			} catch (ClassNotFoundException | SQLException | IOException e1) {
+
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "错误", JOptionPane.OK_CANCEL_OPTION);
+			}
+
+			PanelComputeAndPrintSalary.mainPanel.updateUI();
 		});
 		buttonSalaryDistribution.addActionListener(e -> {
 			buttonPersonalSalary.setIcon(buttonIconDisable);

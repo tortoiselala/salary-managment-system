@@ -4,6 +4,8 @@
 package salary.managment.system.view.panel.func;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,17 +17,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.Map;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import com.mysql.fabric.xmlrpc.base.Data;
-import com.sun.javafx.collections.MappingChange.Map;
-
 import salary.managment.system.base.DatabaseFiled;
+import tmp.Tmp;
 
 /**
  * @author Tortoise
@@ -86,7 +89,8 @@ public class PanelFuncSalarySummary extends JPanel {
 
 	public void createTable() throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		String[][] datas = getInfo();
-		String[] titles = {};
+		String[] titles = { tipDepartmentID, tipBaseSalary, tipBonus, tipSickFee, tipPayrollSubtotal, tipChildCareFee,
+				tipRentFee, tipWaterEleFee, tipRealWage };
 		JTable table = new JTable(datas, titles);
 		JLabel title = new JLabel(tipTitle);
 		this.setLayout(new BorderLayout());
@@ -97,12 +101,12 @@ public class PanelFuncSalarySummary extends JPanel {
 
 	public String[][] getInfo() throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 
-		double sumbaseSalary = 0;
+		double sumBaseSalary = 0;
 		double sumBonus = 0;
 		double sumSickFee = 0;
 		double sumPayrollSubtotal = 0;
 		double sumChildCareFee = 0;
-		double sumChildCareFeeRentFeeWaterEleFee = 0;
+		double sumRentFee = 0;
 		double sumWaterEleFee = 0;
 		double sumRealWage = 0;
 
@@ -115,26 +119,34 @@ public class PanelFuncSalarySummary extends JPanel {
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_DEPARTMENT_ID);
 			double baseSalary = resultSet.getDouble(
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY);
+			sumBaseSalary += baseSalary;
 
 			double bonus = resultSet.getDouble(
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_OTHER_FEE);
+			sumBonus += bonus;
 
 			double sickFee = resultSet.getDouble(
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SICK_FEE);
+			sumSickFee += sickFee;
 
 			double payrollSubtotal = baseSalary + bonus - sickFee;
+			sumPayrollSubtotal += payrollSubtotal;
 
 			double childCareFee = resultSet.getDouble(
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CHILD_CARE_FEE);
+			sumChildCareFee += childCareFee;
 
 			double rentFee = resultSet.getDouble(
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_RENT_FEE);
+			sumRentFee += rentFee;
 
 			double waterEleFee = resultSet.getDouble(
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_WATER_ELE_FEE);
+			sumWaterEleFee += waterEleFee;
 
 			double subtotal = childCareFee + rentFee + waterEleFee;
 			double realWage = payrollSubtotal - subtotal;
+			sumRealWage += realWage;
 
 			Double[] resultField = new Double[8];
 			resultField[0] = baseSalary;
@@ -145,18 +157,45 @@ public class PanelFuncSalarySummary extends JPanel {
 			resultField[5] = rentFee;
 			resultField[6] = waterEleFee;
 			resultField[7] = realWage;
-
-			result.put(departmentID, resultField);
+			if (result.containsKey(departmentID)) {
+				Double[] tmpResultField = result.get(departmentID);
+				for (int i = 0; i < tmpResultField.length; i++) {
+					tmpResultField[i] += resultField[i];
+				}
+				result.put(departmentID, tmpResultField);
+			} else {
+				result.put(departmentID, resultField);
+			}
 		}
-		Set<String> keys = result.keySet();
-		for (int i = 0; i < result.size(); i++) {
+		ArrayList<String[]> resultArrayList = new ArrayList<>();
+		Iterator<Map.Entry<String, Double[]>> entries = result.entrySet().iterator();
+		while (entries.hasNext()) {
+			Map.Entry<String, Double[]> entry = entries.next();
 			String[] tmp = new String[9];
-			tmp[0] = result
+			tmp[0] = entry.getKey();
+			Double[] entryValues = entry.getValue();
+			for (int i = 0; i < entryValues.length; i++) {
+				tmp[i + 1] = Double.toString(entryValues[i]);
+			}
+			resultArrayList.add(tmp);
 		}
+		resultArrayList.add(new String[] { "合计", Double.toString(sumBaseSalary), Double.toString(sumBonus),
+				Double.toString(sumSickFee), Double.toString(sumPayrollSubtotal), Double.toString(sumChildCareFee),
+				Double.toString(sumRentFee), Double.toString(sumWaterEleFee), Double.toString(sumRealWage), });
+		String[][] returnResult = new String[resultArrayList.size()][9];
+		resultArrayList.toArray(returnResult);
+		return returnResult;
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args)
+			throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		JFrame jFrame = new JFrame();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		jFrame.setSize(screenSize.width / 2, screenSize.height / 2);
+		jFrame.setLocation(screenSize.width / 2 - screenSize.width / 4, screenSize.height / 2 - screenSize.height / 4);
+		jFrame.add(new PanelFuncSalarySummary());
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setVisible(true);
 	}
 
 }

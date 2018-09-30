@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -65,7 +66,7 @@ public class CurrentMonthEmployeeSalaryInformationManager {
 	public String[] quiryByID(String ID)
 			throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
 		getConnection();
-		int colNum = 8;
+		int colNum = 9;
 		String[] result = new String[colNum];
 		String sql = "SELECT * FROM " + tableName + " WHERE employee_id = \"" + ID + "\"";
 		ResultSet resultSet = statement.executeQuery(sql);
@@ -88,7 +89,10 @@ public class CurrentMonthEmployeeSalaryInformationManager {
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_WATER_ELE_FEE));
 			result[7] = Double.toString(resultSet.getDouble(
 					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_OTHER_FEE));
+			result[8] = Double.toString(resultSet.getDouble(
+					DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY));
 		}
+		System.out.println(Arrays.toString(result));
 		connection.close();
 		return result;
 	}
