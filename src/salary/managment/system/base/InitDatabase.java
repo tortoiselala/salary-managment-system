@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import com.sun.javafx.geom.AreaOp.AddOp;
 
 import java.sql.*;
@@ -127,7 +129,7 @@ public class InitDatabase {
 			if (!resultSet.next()) {
 				statement.executeUpdate("CREATE TABLE " + currentMonthTable.getTableName() + " select * from "
 						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM);
-				String sql = "ALTER TABLE " + " table_201809 " + " ADD ("
+				String sql = "ALTER TABLE " + currentMonthTable.getTableName() + " ADD ("
 						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SICK_FEE
 						+ " double(11,2) default 0,"
 						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CHILD_CARE_FEE
@@ -138,29 +140,22 @@ public class InitDatabase {
 						+ " double(11,2) default 0,"
 						+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_OTHER_FEE
 						+ " double(11,2) default 0" + ")";
+				System.out.println(sql);
 				statement.executeUpdate(sql);
 			}
 			connection.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException | IOException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Info", JOptionPane.OK_CANCEL_OPTION);
 			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e.getMessage(), "Info", JOptionPane.OK_CANCEL_OPTION);
 				e.printStackTrace();
 			}
 		}
+		JOptionPane.showMessageDialog(null, "初始化数据库成功", "Info", JOptionPane.OK_CANCEL_OPTION);
 
 	}
 

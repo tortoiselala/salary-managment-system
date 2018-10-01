@@ -223,6 +223,26 @@ public class PanelFuncModifyEmployeeBasicInformation extends JPanel {
 	}
 
 	public void addListener() {
+		textFieldDepartmentID.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String inputAllowType = "0123456789";
+
+				int maxLengthOfIDInput = 2;
+				int textFieldContentLength = textFieldDepartmentID.getText().length();
+
+				char ch = e.getKeyChar();
+				if (inputAllowType.indexOf(ch) < 0) {
+					e.consume();
+				}
+
+				if (textFieldContentLength >= maxLengthOfIDInput) {
+					e.consume();
+				}
+
+			}
+		});
 		textFieldEmployeeID.addKeyListener(new KeyAdapter() {
 
 			@Override

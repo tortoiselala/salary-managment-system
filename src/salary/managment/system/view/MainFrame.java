@@ -21,8 +21,10 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.BeanWriterProcessor;
 
 import com.sun.javafx.event.EventQueue;
+import com.sun.org.apache.xml.internal.security.Init;
 
 import javafx.scene.control.ToolBar;
+import salary.managment.system.base.InitDatabase;
 import salary.managment.system.view.panel.PanelAbout;
 import salary.managment.system.view.panel.PanelComputeAndPrintSalary;
 import salary.managment.system.view.panel.PanelInputAndModification;
@@ -72,6 +74,7 @@ public class MainFrame extends JFrame {
 
 	public MainFrame() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			FileNotFoundException, UnsupportedLookAndFeelException, IOException, SQLException {
+		InitDatabase.Init();
 		initFrame();
 	}
 

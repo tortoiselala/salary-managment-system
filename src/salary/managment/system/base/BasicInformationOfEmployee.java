@@ -15,14 +15,24 @@ public class BasicInformationOfEmployee {
 	private short age;
 	private double baseSalary;
 	private String category;
+	private String departmentID;
+
+	public String getDepartmentID() {
+		return departmentID;
+	}
+
+	public void setDepartmentID(String departmentID) {
+		this.departmentID = departmentID;
+	}
 
 	public BasicInformationOfEmployee(String id, String name) throws Exception {
 		setId(id);
 		setName(name);
 		setSex(man);
-		setAge((short) 0);
+		setAge((short) 20);
 		setBaseSalary(0);
 		setCategory("general_staff");
+		setDepartmentID("01");
 	}
 
 	/**
@@ -35,8 +45,8 @@ public class BasicInformationOfEmployee {
 	 * @param category   员工类别
 	 * @throws Exception 员工身份证号输入错误时抛出异常
 	 */
-	public BasicInformationOfEmployee(String id, String name, short sex, short age, double baseSalary,
-			String category) throws Exception {
+	public BasicInformationOfEmployee(String id, String name, short sex, short age, double baseSalary, String category)
+			throws Exception {
 		setId(id);
 		setName(name);
 		setSex(sex);

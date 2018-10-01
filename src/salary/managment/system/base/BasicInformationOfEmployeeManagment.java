@@ -18,7 +18,7 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 	public static void main(String[] args) {
 		BasicInformationOfEmployeeManagment test;
 		try {
-			test = new BasicInformationOfEmployeeManagment("620421199908145140", "tort", man, (short) 10, 10000,
+			test = new BasicInformationOfEmployeeManagment("01", "620421199908145140", "tort", man, (short) 10, 10000,
 					"test");
 			test.deleteEmployeeInformation();
 		} catch (Exception e) {
@@ -48,9 +48,10 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 	 * @param category
 	 * @throws Exception
 	 */
-	public BasicInformationOfEmployeeManagment(String id, String name, short sex, short age, double baseSalary,
-			String category) throws Exception {
+	public BasicInformationOfEmployeeManagment(String departmentID, String id, String name, short sex, short age,
+			double baseSalary, String category) throws Exception {
 		super(id, name, sex, age, baseSalary, category);
+		setDepartmentID(departmentID);
 	}
 
 	private void getConnection() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
@@ -62,7 +63,8 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 		statement = connection.createStatement();
 	}
 
-	public boolean isEmployeeInformationExits() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+	public boolean isEmployeeInformationExits()
+			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "SELECT * FROM "
 				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM;
@@ -77,7 +79,8 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 		return false;
 	}
 
-	public boolean deleteEmployeeInformation() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+	public boolean deleteEmployeeInformation()
+			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getConnection();
 		String sql = "DELETE FROM " + DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM
 				+ " WHERE " + DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_ID
@@ -114,10 +117,12 @@ public class BasicInformationOfEmployeeManagment extends BasicInformationOfEmplo
 					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SEX + ", "
 					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_AGE + ", "
 					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_BASESALARY + ", "
-					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY
+					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CATEGORY + ", "
+					+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_DEPARTMENT_ID
 					+ ") VALUES  (" + " \"" + getId() + "\", " + " \"" + getName() + "\", " + getSex() + ", " + getAge()
-					+ ", " + getBaseSalary() + ", " + " \"" + getCategory() + "\" " + ")";
-			System.out.println("insert");
+					+ ", " + getBaseSalary() + ", " + " \"" + getCategory() + "\" , \"" + getDepartmentID() + "\" "
+					+ ")";
+			System.out.println("insert:" + sql);
 
 		}
 		getConnection();

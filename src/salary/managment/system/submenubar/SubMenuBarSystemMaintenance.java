@@ -20,6 +20,10 @@ import salary.managment.system.tools.ImageTool;
 import salary.managment.system.view.AppConstantsField;
 import salary.managment.system.view.MenuButton;
 import salary.managment.system.view.PathManager;
+import salary.managment.system.view.panel.PanelSystemMaintenance;
+import salary.managment.system.view.panel.func.FuncBackupDatabase;
+import salary.managment.system.view.panel.func.PanelFuncAddEmployee;
+import salary.managment.system.view.panel.func.PanelFuncDeleteEmployee;
 
 /**
  * @author Tortoise
@@ -50,14 +54,14 @@ public class SubMenuBarSystemMaintenance extends JPanel {
 	private ImageIcon buttonIconDisable;
 
 	public SubMenuBarSystemMaintenance() throws FileNotFoundException, IOException {
-		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH/2,
+		Dimension preferredSize = new Dimension(AppConstantsField.SUB_MENUBAR_WIDTH / 2,
 				AppConstantsField.SUB_MENUBAR_HEIGHT);
 		this.setPreferredSize(preferredSize);
 		this.setMaximumSize(preferredSize);
 		this.setMinimumSize(preferredSize);
 		this.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 		this.setLayout(new GridLayout(2, 1));
-		
+
 		setButtonTip();
 		addButton();
 		addButtonListener();
@@ -108,7 +112,7 @@ public class SubMenuBarSystemMaintenance extends JPanel {
 		panelUp.add(buttonDatabaseBackup);
 		panelUp.add(buttonAddEmployeeBaseInformation);
 		panelUp.add(buttonDecreaseEmployeeBaseInformation);
-		panelUp.add(buttonUpdateEmployeeBaseInformation);
+		// panelUp.add(buttonUpdateEmployeeBaseInformation);
 		panelUp.setBackground(AppConstantsField.TOOL_BAR_BACK_COLOR);
 
 		JPanel panelDown = new JPanel();
@@ -127,12 +131,19 @@ public class SubMenuBarSystemMaintenance extends JPanel {
 			buttonDecreaseEmployeeBaseInformation.setIcon(buttonIconDisable);
 			buttonUpdateEmployeeBaseInformation.setIcon(buttonIconDisable);
 
+			FuncBackupDatabase funcBackupDatabase = new FuncBackupDatabase();
+			funcBackupDatabase.backup();
+
 		});
 		buttonAddEmployeeBaseInformation.addActionListener(e -> {
 			buttonDatabaseBackup.setIcon(buttonIconDisable);
 			buttonAddEmployeeBaseInformation.setIcon(buttonIconEnable);
 			buttonDecreaseEmployeeBaseInformation.setIcon(buttonIconDisable);
 			buttonUpdateEmployeeBaseInformation.setIcon(buttonIconDisable);
+
+			PanelSystemMaintenance.mainPanel.removeAll();
+			PanelSystemMaintenance.mainPanel.add(PanelSystemMaintenance.panelFuncAddEmployee);
+			PanelSystemMaintenance.mainPanel.updateUI();
 
 		});
 		buttonDecreaseEmployeeBaseInformation.addActionListener(e -> {
@@ -141,6 +152,9 @@ public class SubMenuBarSystemMaintenance extends JPanel {
 			buttonDecreaseEmployeeBaseInformation.setIcon(buttonIconEnable);
 			buttonUpdateEmployeeBaseInformation.setIcon(buttonIconDisable);
 
+			PanelSystemMaintenance.mainPanel.removeAll();
+			PanelSystemMaintenance.mainPanel.add(new PanelFuncDeleteEmployee());
+			PanelSystemMaintenance.mainPanel.updateUI();
 		});
 
 		buttonUpdateEmployeeBaseInformation.addActionListener(e -> {

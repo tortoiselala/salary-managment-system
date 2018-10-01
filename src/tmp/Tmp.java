@@ -10,25 +10,15 @@ import sun.security.provider.VerificationProvider;
 
 public class Tmp {
 	public static void main(String[] args) {
-		// Tmp tmp = new Tmp();
-		String sql = "ALTER TABLE " +" table_201809 " + " ADD ("
-				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_SICK_FEE
-				+ " double(11,2) default 0,"
-				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_CHILD_CARE_FEE
-				+ " double(11,2) default 0,"
-				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_RENT_FEE
-				+ " double(11,2) default 0,"
-				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_WATER_ELE_FEE
-				+ " double(11,2) default 0,"
-				+ DatabaseFiled.DB_DATABASE_BASE_INFORMATION_TABLE_EMPLOYEE_BASIC_INFORMATION_FORM_OTHER_FEE
-				+ " double(11,2) default 0" + ")";
-		System.out.println(sql);
+		Tmp tmp = new Tmp();
+
 	}
 
 	public Tmp() {
 		// en_us();
 		// zh_cn();
-		tip_loader();
+		// tip_loader();
+		getThirdWord();
 	}
 
 	/**
@@ -96,5 +86,21 @@ public class Tmp {
 			System.out.println(");");
 		}
 
+	}
+
+	public void getThirdWord() {
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			String line = scanner.nextLine();
+			String[] lineSpilt = line.split(" ");
+			if (lineSpilt.length >= 2) {
+				String[] next = lineSpilt[2].split(";");
+
+				System.out.println(next[0] + "= new " + lineSpilt[1] + "();");
+			} else {
+				System.out.println();
+			}
+
+		}
 	}
 }
